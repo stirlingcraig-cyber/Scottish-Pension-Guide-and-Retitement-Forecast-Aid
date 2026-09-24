@@ -1,0 +1,2901 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAS — Pension Guidance for Scotland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211F2E;
+    --ink-soft:rgba(33,31,46,0.64);
+    --ink-faint:rgba(33,31,46,0.40);
+    --paper:#F2EFE6;
+    --paper-raised:#FFFFFF;
+    --heather:#6E5480;
+    --heather-deep:#463455;
+    --heather-bright:#8A67A0;
+    --heather-soft:rgba(110,84,128,0.12);
+    --gold:#B8894A;
+    --gold-deep:#8F6530;
+    --gold-soft:rgba(184,137,74,0.14);
+    --moss:#3F5A44;
+    --moss-soft:rgba(63,90,68,0.13);
+    --rule:rgba(33,31,46,0.14);
+    --rule-soft:rgba(33,31,46,0.06);
+    --support:#5C4A1E;
+    --support-bg:#F2EAD3;
+    --support-border:#D2BE86;
+    --scam:#7A2E2A;
+    --scam-bg:#F5E2DE;
+    --scam-border:#D8A79C;
+    --good:#2E5F42;
+    --good-bg:#E1EFE3;
+    --good-border:#A9CBB2;
+    --shadow-sm:0 1px 2px rgba(33,31,46,0.06);
+    --shadow-md:0 6px 20px rgba(33,31,46,0.09), 0 1px 2px rgba(33,31,46,0.06);
+    --shadow-lg:0 16px 40px rgba(33,31,46,0.14), 0 2px 6px rgba(33,31,46,0.08);
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1100px 520px at 12% -8%, rgba(110,84,128,0.16), transparent 60%),
+      radial-gradient(900px 480px at 108% 6%, rgba(184,137,74,0.14), transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .app-shell{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px 150px;
+  }
+  header.masthead{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin:0 -24px 40px;
+    padding:26px 24px 34px;
+    background:linear-gradient(135deg, var(--ink) 0%, #2E2A42 52%, var(--heather-deep) 100%);
+    color:var(--paper-raised);
+    position:relative;
+    overflow:hidden;
+    box-shadow:var(--shadow-md);
+  }
+  header.masthead::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(420px 200px at 88% -20%, rgba(184,137,74,0.35), transparent 65%),
+      radial-gradient(360px 220px at 6% 120%, rgba(110,84,128,0.45), transparent 60%);
+    pointer-events:none;
+  }
+  header.masthead .peaks{
+    position:absolute; left:0; right:0; bottom:0; height:46px;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .brand{ display:flex; align-items:center; gap:13px; position:relative; z-index:1; }
+  .cairn-mark{ display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .cairn-mark span{ display:block; background:linear-gradient(135deg, var(--gold) 0%, #D9AE72 100%); border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,0.25); }
+  .cairn-mark span:nth-child(1){ width:22px; height:6px; }
+  .cairn-mark span:nth-child(2){ width:16px; height:6px; }
+  .cairn-mark span:nth-child(3){ width:9px; height:6px; }
+  header.masthead h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:30px;
+    margin:0;
+    letter-spacing:0.2px;
+    color:var(--paper-raised);
+  }
+  header.masthead .tag{
+    font-size:13px;
+    color:rgba(255,255,255,0.72);
+    font-style:italic;
+    font-family:var(--serif);
+    position:relative; z-index:1;
+  }
+  .intro{
+    color:var(--ink-soft);
+    font-size:15.5px;
+    line-height:1.6;
+    max-width:56ch;
+    margin-bottom:28px;
+  }
+
+  /* --- Home: hero calculator card --- */
+  .hero-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    width:100%;
+    text-align:left;
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+    border-radius:16px;
+    padding:26px 26px;
+    margin-bottom:34px;
+    background:linear-gradient(120deg, var(--heather-deep) 0%, var(--heather) 62%, #7A5C8D 100%);
+    color:var(--paper-raised);
+    box-shadow:var(--shadow-lg);
+    position:relative;
+    overflow:hidden;
+    transition:transform 160ms ease, box-shadow 160ms ease;
+  }
+  .hero-card::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(280px 180px at 90% 0%, rgba(184,137,74,0.4), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-card:hover{ transform:translateY(-2px); box-shadow:0 20px 46px rgba(33,31,46,0.22), 0 2px 6px rgba(33,31,46,0.1); }
+  .hero-card:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+  .hero-icon{
+    flex-shrink:0;
+    width:56px; height:56px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.28);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; z-index:1;
+  }
+  .hero-icon svg{ width:28px; height:28px; }
+  .hero-copy{ display:flex; flex-direction:column; gap:4px; flex:1; min-width:0; position:relative; z-index:1; }
+  .hero-eyebrow{
+    font-size:11.5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+    color:#F0D9AE;
+  }
+  .hero-title{ font-family:var(--serif); font-size:23px; font-weight:600; }
+  .hero-desc{ font-size:14px; line-height:1.5; color:rgba(255,255,255,0.82); max-width:48ch; }
+  .hero-cta{
+    flex-shrink:0;
+    font-size:13.5px;
+    font-weight:600;
+    background:var(--gold);
+    color:#2B1E0B;
+    padding:10px 16px;
+    border-radius:999px;
+    white-space:nowrap;
+    position:relative; z-index:1;
+    box-shadow:0 4px 12px rgba(184,137,74,0.4);
+  }
+
+  .section-heading{
+    font-family:var(--sans);
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    letter-spacing:0.05em;
+    margin:0 0 14px;
+    text-transform:uppercase;
+  }
+
+  /* --- Home: topic cards --- */
+  .waypoints{ display:flex; flex-direction:column; gap:10px; }
+  .way-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px 18px;
+    border:1px solid var(--rule);
+    border-radius:12px;
+    cursor:pointer;
+    background:var(--paper-raised);
+    text-align:left;
+    width:100%;
+    font-family:inherit;
+    box-shadow:var(--shadow-sm);
+    transition:transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  }
+  .way-card:hover{ transform:translateY(-1px); box-shadow:var(--shadow-md); border-color:var(--heather); }
+  .way-card:focus-visible{ outline:2px solid var(--heather); outline-offset:2px; }
+  .way-icon{
+    flex-shrink:0;
+    width:42px; height:42px;
+    border-radius:10px;
+    background:var(--heather-soft);
+    color:var(--heather-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .way-icon svg{ width:21px; height:21px; }
+  .way-text{ display:flex; flex-direction:column; gap:3px; flex:1; min-width:0; }
+  .way-title{
+    font-family:var(--serif);
+    font-size:16.5px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .way-desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.45;
+  }
+  .way-arrow{
+    font-family:var(--serif);
+    font-size:18px;
+    color:var(--heather);
+    flex-shrink:0;
+  }
+
+  .data-note{
+    margin-top:28px;
+    border-top:1px solid var(--rule);
+    padding-top:18px;
+  }
+  .data-note summary{
+    cursor:pointer;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  .data-note summary:focus-visible{ outline:2px solid var(--heather); }
+  .data-note p{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    margin:10px 0 0;
+    max-width:58ch;
+  }
+  .home-actions{ margin-top:18px; }
+
+  /* --- Card --- */
+  .card{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:16px;
+    padding:36px 32px;
+    box-shadow:var(--shadow-md);
+  }
+  .card:focus{ outline:none; }
+  .card .eyebrow-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+  }
+  .module-name{
+    font-family:var(--serif);
+    font-size:15px;
+    color:var(--heather-deep);
+    font-weight:600;
+  }
+  .progress-text{
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .question-label{
+    font-family:var(--serif);
+    font-size:22px;
+    line-height:1.4;
+    font-weight:500;
+    margin:0 0 24px;
+  }
+
+  .options{ display:flex; flex-direction:column; gap:10px; margin-bottom:8px; }
+  .option-btn{
+    text-align:left;
+    padding:14px 16px;
+    border:1px solid var(--rule);
+    background:var(--paper-raised);
+    border-radius:10px;
+    font-family:var(--sans);
+    font-size:15px;
+    color:var(--ink);
+    cursor:pointer;
+    transition:border-color 120ms ease, background 120ms ease;
+  }
+  .option-btn:hover{ border-color:var(--heather); box-shadow:var(--shadow-sm); }
+  .option-btn:focus-visible{ outline:2px solid var(--heather); outline-offset:2px; }
+  .option-btn.selected{
+    border-color:var(--heather);
+    background:var(--heather-soft);
+    box-shadow:inset 0 0 0 1px var(--heather);
+  }
+
+  input[type="text"], input[type="date"], textarea, select{
+    width:100%;
+    font-family:var(--sans);
+    font-size:15px;
+    color:var(--ink);
+    padding:13px 14px;
+    border:1px solid var(--rule);
+    border-radius:10px;
+    background:var(--paper-raised);
+    margin-bottom:8px;
+  }
+  textarea{ min-height:90px; resize:vertical; }
+  input[type="text"]:focus, input[type="date"]:focus, textarea:focus, select:focus{
+    outline:none;
+    border-color:var(--heather);
+    box-shadow:0 0 0 3px var(--heather-soft);
+  }
+
+  .field-hint{
+    font-size:12.5px;
+    color:var(--ink-faint);
+    margin:-4px 0 14px;
+  }
+
+  .field-checkbox-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:4px 0 14px;
+  }
+  .field-checkbox-row input[type="checkbox"]{
+    margin-top:3px;
+    width:17px;
+    height:17px;
+    accent-color:var(--heather);
+    flex-shrink:0;
+  }
+  .field-checkbox-row label{
+    font-size:14.5px;
+    color:var(--ink);
+    line-height:1.4;
+    cursor:pointer;
+  }
+
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:26px;
+  }
+  .btn{
+    font-family:var(--sans);
+    font-size:14.5px;
+    font-weight:600;
+    padding:12px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+  }
+  .btn:focus-visible{ outline:2px solid var(--heather); outline-offset:2px; }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--ink) 0%, #3A3552 100%);
+    color:var(--paper-raised);
+    box-shadow:0 4px 12px rgba(33,31,46,0.28);
+  }
+  .btn-primary:hover:not(:disabled){ transform:translateY(-1px); box-shadow:0 6px 16px rgba(33,31,46,0.34); }
+  .btn-primary:disabled{
+    background:var(--ink-faint);
+    box-shadow:none;
+    cursor:not-allowed;
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink-soft);
+    border-color:var(--rule);
+  }
+  .btn-ghost:hover{ border-color:var(--ink-soft); background:var(--rule-soft); }
+
+  /* --- Support banner (wellbeing) --- */
+  .support-banner{
+    background:var(--support-bg);
+    border:1px solid var(--support-border);
+    border-radius:12px;
+    padding:16px 18px;
+    margin:0 0 18px;
+    box-shadow:var(--shadow-sm);
+  }
+  .support-banner p{
+    margin:0 0 8px;
+    font-size:14px;
+    line-height:1.55;
+    color:var(--support);
+  }
+  .support-banner p:last-child{ margin-bottom:0; }
+  .support-banner a{ color:var(--support); font-weight:600; }
+
+  /* --- Scam-alert banner --- */
+  .scam-banner{
+    background:var(--scam-bg);
+    border:1px solid var(--scam-border);
+    border-radius:12px;
+    padding:16px 18px;
+    margin:0 0 18px;
+    box-shadow:var(--shadow-sm);
+  }
+  .scam-banner p{
+    margin:0 0 8px;
+    font-size:14px;
+    line-height:1.55;
+    color:var(--scam);
+  }
+  .scam-banner p:last-child{ margin-bottom:0; }
+  .scam-banner a{ color:var(--scam); font-weight:600; }
+
+  /* --- Local-guidance fallback notice --- */
+  .fallback-banner{
+    background:var(--heather-soft);
+    border:1px solid var(--heather);
+    border-radius:10px;
+    padding:12px 16px;
+    margin:0 0 18px;
+    font-size:13px;
+    line-height:1.5;
+    color:var(--heather-deep);
+  }
+
+  /* --- Loading --- */
+  .loading-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:30px 0 10px;
+    gap:18px;
+  }
+  .seal{
+    width:52px; height:52px;
+    border:2px solid var(--heather);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px;
+    color:var(--heather);
+    animation:seal-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes seal-pulse{
+    0%,100%{ transform:scale(1); opacity:0.85; }
+    50%{ transform:scale(1.08); opacity:1; }
+  }
+  .loading-text{ color:var(--ink-soft); font-size:14.5px; }
+
+  /* --- Stat tiles (headline numbers) --- */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .stat-tile{
+    border-radius:12px;
+    padding:16px 16px;
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    box-shadow:var(--shadow-sm);
+  }
+  .stat-tile .stat-label{
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    display:block;
+    margin-bottom:6px;
+  }
+  .stat-tile .stat-value{
+    font-family:var(--serif);
+    font-size:23px;
+    font-weight:600;
+    color:var(--ink);
+    font-variant-numeric:tabular-nums;
+    display:block;
+    line-height:1.2;
+  }
+  .stat-tile .stat-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:4px;
+    display:block;
+  }
+  .stat-tile.stat-good{ background:var(--good-bg); border-color:var(--good-border); }
+  .stat-tile.stat-good .stat-value{ color:var(--good); }
+  .stat-tile.stat-warn{ background:var(--support-bg); border-color:var(--support-border); }
+  .stat-tile.stat-warn .stat-value{ color:var(--support); }
+  .stat-tile.stat-bad{ background:var(--scam-bg); border-color:var(--scam-border); }
+  .stat-tile.stat-bad .stat-value{ color:var(--scam); }
+  .stat-tile.stat-accent{ background:var(--heather-soft); border-color:var(--heather); }
+  .stat-tile.stat-accent .stat-value{ color:var(--heather-deep); }
+
+  /* --- Calculated figures panel --- */
+  .calc-panel{
+    border:1px solid var(--rule);
+    background:var(--paper-raised);
+    border-radius:14px;
+    padding:22px 22px 8px;
+    margin-bottom:26px;
+    box-shadow:var(--shadow-sm);
+  }
+  .calc-panel h4{
+    font-family:var(--serif);
+    font-size:16px;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .calc-section-label{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--heather-deep);
+    margin:16px 0 2px;
+  }
+  .calc-section-label:first-of-type{ margin-top:0; }
+  .calc-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:9px 0;
+    border-bottom:1px solid var(--rule);
+    font-size:14px;
+  }
+  .calc-row:last-of-type{ border-bottom:none; }
+  .calc-row .calc-label{ color:var(--ink-soft); }
+  .calc-row .calc-value{ font-weight:600; font-variant-numeric:tabular-nums; text-align:right; }
+  .calc-row.calc-total .calc-label, .calc-row.calc-total .calc-value{ color:var(--ink); font-weight:700; }
+  .calc-subvalue{ display:inline-block; margin-top:2px; font-size:12px; font-weight:400; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
+  .calc-footnote{
+    font-size:12.5px;
+    color:var(--ink-faint);
+    line-height:1.5;
+    margin:12px 0 14px;
+  }
+
+  /* --- Verdict banner --- */
+  .verdict-banner{
+    display:flex;
+    align-items:flex-start;
+    gap:13px;
+    border-radius:12px;
+    padding:16px 18px;
+    margin:0 0 18px;
+    font-size:15px;
+    line-height:1.55;
+    font-weight:500;
+  }
+  .verdict-icon{
+    flex-shrink:0;
+    width:26px; height:26px;
+    margin-top:1px;
+  }
+  .verdict-icon svg{ width:100%; height:100%; }
+  .verdict-label{
+    display:block;
+    font-family:var(--sans);
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    margin-bottom:3px;
+    opacity:0.85;
+  }
+  .verdict-good{ background:var(--good-bg); color:var(--good); border:1px solid var(--good-border); box-shadow:var(--shadow-sm); }
+  .verdict-warn{ background:var(--support-bg); color:var(--support); border:1px solid var(--support-border); box-shadow:var(--shadow-sm); }
+  .verdict-bad{ background:var(--scam-bg); color:var(--scam); border:1px solid var(--scam-border); box-shadow:var(--shadow-sm); }
+
+  /* --- Forecast builder: multi-field steps --- */
+  .step-subtitle{
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.55;
+    margin:-14px 0 22px;
+    max-width:52ch;
+  }
+  .form-field{ margin-bottom:18px; }
+  .form-field:last-of-type{ margin-bottom:8px; }
+  .field-label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+
+  .pension-list{ margin-bottom:18px; }
+  .pension-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 16px;
+    border:1px solid var(--rule);
+    border-radius:10px;
+    background:var(--rule-soft);
+    margin-bottom:10px;
+  }
+  .pension-card-info{ display:flex; flex-direction:column; gap:2px; }
+  .pension-type-label{
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    color:var(--heather-deep);
+  }
+  .pension-card-detail{ font-size:13px; color:var(--ink-soft); }
+  .pension-card-remove{
+    background:transparent;
+    border:1px solid var(--rule);
+    color:var(--ink-soft);
+    font-family:var(--sans);
+    font-size:12.5px;
+    padding:6px 12px;
+    border-radius:5px;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .pension-card-remove:hover{ border-color:var(--scam); color:var(--scam); }
+  .pension-card-remove:focus-visible{ outline:2px solid var(--heather); outline-offset:2px; }
+
+  .add-pension-form{
+    border-top:1px dashed var(--rule);
+    padding-top:18px;
+  }
+  .add-pension-btn{ width:100%; text-align:center; }
+  .add-pension-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+
+  .empty-state{
+    font-size:14px;
+    color:var(--ink-faint);
+    font-style:italic;
+    margin:0 0 18px;
+  }
+
+  /* --- Recap --- */
+  .recap{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid var(--rule);
+  }
+  .recap summary{
+    cursor:pointer;
+    font-family:var(--serif);
+    font-size:15px;
+    color:var(--heather-deep);
+    font-weight:600;
+  }
+  .recap summary:focus-visible{ outline:2px solid var(--heather); }
+  .recap-group{ margin-top:14px; }
+  .recap-group h5{
+    font-family:var(--sans);
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+  }
+  .recap-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-size:13.5px;
+    padding:6px 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .recap-row:last-child{ border-bottom:none; }
+  .recap-row .recap-label{ color:var(--ink-soft); max-width:60%; }
+  .recap-row .recap-value{ font-weight:500; text-align:right; }
+
+  /* --- Advice --- */
+  .advice h2{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:600;
+    margin:26px 0 10px;
+  }
+  .advice h2:first-child{ margin-top:0; }
+  .advice p{ font-size:15.5px; line-height:1.7; margin:0 0 14px; color:var(--ink); }
+  .advice ul{ margin:0 0 14px; padding-left:20px; }
+  .advice li{ font-size:15.5px; line-height:1.65; margin-bottom:6px; }
+  .advice strong{ color:var(--ink); }
+  .error-text{ color:#8a3a2b; font-size:14.5px; line-height:1.6; }
+
+  .resource-line{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid var(--rule);
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .resource-line a{ color:var(--heather-deep); }
+
+  /* --- Disclaimer footer --- */
+  .disclaimer{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    background:var(--ink);
+    color:rgba(250,249,242,0.82);
+    font-size:12.5px;
+    line-height:1.5;
+    text-align:center;
+    padding:12px 20px;
+    border-top:1px solid rgba(110,84,128,0.55);
+  }
+  .disclaimer strong{ color:#FAF9F2; }
+
+  @media (max-width:480px){
+    .app-shell{ padding:0 16px 150px; }
+    header.masthead{ margin:0 -16px 32px; padding:22px 16px 30px; }
+    header.masthead h1{ font-size:23px; }
+    .card{ padding:26px 20px; }
+    .question-label{ font-size:19px; }
+    .calc-row, .recap-row{ flex-direction:column; gap:2px; }
+    .calc-row .calc-value, .recap-row .recap-value{ text-align:left; }
+    .recap-row .recap-label{ max-width:100%; }
+    .pension-card{ flex-direction:column; align-items:flex-start; }
+    .hero-card{ flex-direction:column; align-items:flex-start; padding:22px 20px; }
+    .hero-cta{ align-self:flex-start; }
+    .stat-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app-shell" id="app" role="main"></div>
+
+<div class="disclaimer">
+  <strong>Educational guidance only</strong> — not a personal recommendation or regulated pension advice. Speak to an FCA-authorised financial adviser, or use <strong>Pension Wise</strong> (free, if you're 50+) before making decisions.
+</div>
+
+<script>
+const MODULES = [
+  {
+    id: "forecast",
+    title: "Full pension forecast",
+    description: "Build a full household forecast — combine partners, multiple pensions, savings, and a target income to see if there's a gap.",
+    featured: true,
+    task: "Using the CALCULATED figures given, write a complete household retirement forecast summary. Bring together the household's combined projected pension income (from every pension listed, of whichever type), each person's State Pension once it starts at their own State Pension age, and any savings being used to bridge a gap. Be precise and consistent about net versus gross throughout, exactly as the CALCULATED lines label each figure: each individual pension and State Pension amount is given GROSS (before tax) — that's what that pension itself pays out — while the target income, the phase-by-phase income timeline, the steady-state income, and any shortfall figures are all NET (after deducting estimated Scottish Income Tax, worked out per person). Never mix the two up or imply a gross pension figure is what lands in the person's pocket after tax. If a Police Scotland pension is present, briefly explain how it was worked out across its three distinct periods of service: pre-2015 years under the legacy 2006 final-salary scheme, 2015–2022 'remedy period' years resolved by the McCloud 'deferred choice underpin' (whichever of legacy or 2015 CARE treatment is more generous for those specific years), and years from April 2022 onward under the mandatory 2015 CARE scheme. Note that the deferred choice underpin outcome, and exact pensionable pay figures, should be confirmed with SPPA (the Scottish Public Pensions Agency) via an official Remediable Service Statement. Clearly state whether the household's net target annual income is projected to be met, from what age, and — if there's a projected shortfall before all income sources are in payment — describe the gap in plain terms: how large it is, which ages it spans, and whether savings are projected to cover it or run out first. If a defined contribution pension is not taking its 25% tax-free lump sum, mention that this trades an upfront lump sum for a higher ongoing income (the lump sum itself is tax-free and not reduced by Income Tax). If a calculated earliest sustainable retirement age is given for a person, explain it clearly as a separate, calculated figure — the earliest age their net income (with savings bridging any gap) sustainably supports the household's stated net target — and note plainly if it differs from the retirement age they actually entered, without implying they must retire at either age. Weave in relevant OTHER CONTEXT (such as health, dependants, or nomination status) where genuinely relevant. Be clear throughout that every figure is an illustration built on assumed growth, annuity, drawdown, State Pension and Income Tax assumptions, not a guarantee — real figures depend on investment performance, inflation, actual tax rules and rates at the time, and each person's actual State Pension record.",
+    questions: []
+  },
+  {
+    id: "fact-find",
+    title: "Fact-find",
+    description: "Lay out your circumstances so guidance can be grounded in your own situation.",
+    task: "Summarise the person's circumstances back to them in plain, warm language. Note anything that might shape their pension planning, including their target retirement age relative to their current age, their employment status, and anything about their health they mentioned. Outline what a pension adviser would typically want to explore further with them.",
+    questions: [
+      { id:"current_age", label:"What's your current age?", type:"text", placeholder:"e.g. 47" },
+      { id:"target_retirement_age", label:"At what age would you ideally like to retire, or start taking your pension?", type:"text", placeholder:"e.g. 65" },
+      { id:"employment_status", label:"What's your employment status?", type:"select",
+        options:["Employed","Self-employed","Contractor","Not currently working"] },
+      { id:"marital_status", label:"What's your marital or civil partnership status?", type:"select",
+        options:["Single","Married or in a civil partnership","Divorced or a dissolved partnership","Widowed"] },
+      { id:"existing_pensions", label:"What pensions do you currently have — workplace, personal, or State Pension only? A rough number of pots is fine.", type:"textarea",
+        placeholder:"e.g. two workplace pensions from past jobs, plus my current employer's scheme" },
+      { id:"health", label:"Anything about your health that might affect your retirement plans or the value of guaranteed income options?", type:"textarea",
+        placeholder:"Optional — leave blank if not applicable" }
+    ]
+  },
+  {
+    id: "tax-relief",
+    title: "Contributions & tax relief",
+    description: "See how tax relief on your pension contributions actually works if you're a Scottish taxpayer.",
+    task: "Using the CALCULATED figures given, explain how tax relief on pension contributions works for this person, being precise about the Scottish income tax nuance: relief-at-source schemes only add relief automatically at the UK basic rate (20%), so a Scottish intermediate, higher, advanced, or top-rate taxpayer usually has to claim the rest back themselves through Self Assessment, while a Scottish starter-rate taxpayer keeps the extra 20% relief without any clawback. If their contribution is net pay or salary sacrifice, explain that full relief already happens automatically at their marginal rate, with nothing to claim. If their income falls between £100,000 and £125,140, mention the personal allowance taper and how pension contributions are a well-known way to reduce its effect. Do not recompute the figures given.",
+    questions: [
+      { id:"scottish_taxpayer", label:"Are you a Scottish taxpayer (based on where your main home is)?", type:"select",
+        options:["Yes, I live in Scotland","No, I live elsewhere in the UK","Not sure"] },
+      { id:"gross_income", label:"What's your approximate gross annual income, before tax?", type:"text", placeholder:"e.g. £45,000" },
+      { id:"annual_contribution", label:"How much do you personally pay into your pension each year, before any tax relief top-up is added?", type:"text", placeholder:"e.g. £2,400" },
+      { id:"contribution_method", label:"How are your contributions usually made?", type:"select",
+        options:["Relief at source (most personal pensions and many workplace schemes)","Net pay or salary sacrifice","Not sure"] }
+    ]
+  },
+  {
+    id: "pot-projection",
+    title: "Pot & projections",
+    description: "Get a general, illustrative sense of how your pension pot could grow — with figures worked out for you.",
+    task: "Using the CALCULATED figures given, explain in general educational terms how the size of a pension pot at retirement depends on time, contributions, and investment growth. Refer to the three illustrative growth scenarios directly and explain why they diverge, and what the estimated tax-free lump sum figure represents. Relate this to the person's stated risk appetite in general terms, without recommending a specific fund or asset allocation. Do not state a definitive pot size they will end up with — these are illustrations, not forecasts.",
+    questions: [
+      { id:"current_pot", label:"Roughly how much is in your pension pot(s) right now, combined?", type:"text", placeholder:"e.g. £85,000" },
+      { id:"monthly_contribution", label:"How much goes in each month in total, including any employer contribution?", type:"text", placeholder:"e.g. £450" },
+      { id:"years_to_retirement", label:"How many years until you plan to access this pension?", type:"text", placeholder:"e.g. 18" },
+      { id:"risk_appetite", label:"How would you describe your appetite for investment risk?", type:"select",
+        options:["Cautious","Balanced","Adventurous","Not sure"] }
+    ]
+  },
+  {
+    id: "state-pension",
+    title: "State Pension & National Insurance",
+    description: "Understand qualifying years in plain terms, without relying on figures that change every year.",
+    task: "Using the CALCULATED figures given, explain in general terms what National Insurance qualifying years mean for the new State Pension, referring to the person's projected total directly. Do not state a specific weekly or annual pound amount for the State Pension beyond what is given to you as CALCULATED, since these figures are uprated every year — tell them to get their exact personalised forecast at the free 'Check your State Pension forecast' service on GOV.UK. Mention that gaps can sometimes be filled with voluntary contributions if that's relevant to their answers.",
+    questions: [
+      { id:"ni_years_so_far", label:"Roughly how many qualifying National Insurance years have you built up so far?", type:"text", placeholder:"e.g. 22" },
+      { id:"years_left_working", label:"How many more years do you expect to pay NI, through work or credits, before State Pension age?", type:"text", placeholder:"e.g. 12" },
+      { id:"ni_gaps", label:"Do you think you have any gaps in your NI record?", type:"select",
+        options:["No, I don't think so","Yes, I have some gaps","Not sure"] }
+    ]
+  },
+  {
+    id: "income-options",
+    title: "Retirement income options",
+    description: "Think through the trade-offs between guaranteed income and flexibility.",
+    task: "Explain, in educational terms, the general trade-offs between the main ways of taking a defined contribution pension in the UK — a guaranteed income (annuity), flexible drawdown, and taking lump sums as needed (UFPLS) — tailored to whether this person wants guaranteed income, flexibility, or a mix, and to any other income or lump-sum plans they mentioned. Do not recommend one specific route for them personally.",
+    questions: [
+      { id:"income_need", label:"Which sounds closest to what you want in retirement?", type:"select",
+        options:["A guaranteed income I can't outlive","Flexibility to vary how much I take, and when","A mix of both","Not sure yet"] },
+      { id:"other_income", label:"Will you have any other income in retirement — another pension, rental income, part-time work?", type:"textarea",
+        placeholder:"Optional — leave blank if not applicable" },
+      { id:"lump_sum_plans", label:"Any plans for a tax-free lump sum, such as paying off a mortgage or a one-off purchase?", type:"textarea",
+        placeholder:"Optional — leave blank if not applicable" }
+    ]
+  },
+  {
+    id: "death-benefits",
+    title: "Beneficiaries & death benefits",
+    description: "Understand how your pension is treated if you die, and why nominations matter under Scots law.",
+    task: "Explain, in educational terms, why keeping an up-to-date expression of wish or nomination form matters for pension death benefits, and the Scots law point that most UK pension death benefits are paid at trustee discretion and generally sit outside both a person's estate for Inheritance Tax and outside 'legal rights' claims that a spouse, civil partner, or children can otherwise make against moveable estate in Scotland — tailored to whether they have dependants, a current nomination, and a will. Note that a nomination is generally not legally binding on the trustees, which is exactly why keeping it current matters. Do not give a definitive statement about their own Inheritance Tax position.",
+    questions: [
+      { id:"dependants_financial", label:"Does anyone rely on your income day to day?", type:"select",
+        options:["Yes","No","Partly"] },
+      { id:"expression_of_wish", label:"Do you have an up-to-date expression of wish or nomination form for your pension?", type:"select",
+        options:["Yes, it's up to date","I did one a while ago, not sure it's current","No, I haven't","Not sure what this is"] },
+      { id:"will_status", label:"Do you currently have a will?", type:"select",
+        options:["Yes","No","Not sure"] }
+    ]
+  }
+];
+
+const SYSTEM_PROMPT = `You are the guidance engine inside CAS, a Scotland-focused app that helps people understand their pensions before they speak to a professional. Your knowledge is informed by UK pension principles and the Scottish income tax system.
+
+Rules you always follow:
+- You are not a regulated financial or pension adviser. Never phrase anything as a personal recommendation or a guaranteed outcome.
+- Write in plain, warm, professional language. Explain any jargon the first time you use it.
+- Ground everything in the specific facts the person gave you — refer back to their numbers and situation, don't give generic filler.
+- If the USER FACTS include lines starting "CALCULATED", those figures have already been worked out correctly by the app using recognised pension maths. Refer to them directly and explain what they mean — never recompute or contradict them. Any figures given as illustrative (tax bands, growth rates, annuity rates, withdrawal rates, allowances, State Pension estimates) may have changed since they were last reviewed — say so where relevant and point to GOV.UK for current figures. Some CALCULATED lines are explicitly marked GROSS (before tax) and others NET (after tax) — always carry that exact label through into your own wording (e.g. "£X/yr gross" or "£X/yr net") rather than dropping it or treating the two as interchangeable.
+- If the USER FACTS include lines starting "OTHER CONTEXT", treat these as background the person shared elsewhere in the app. Weave them in naturally where genuinely relevant, but do not force every piece of context into every answer.
+- If the USER FACTS include a "WELLBEING NOTE", respond with extra care: keep language very simple, avoid comparing products or urging any particular action, and make your closing line a warm, clear encouragement to speak to Pension Wise (free, government-backed, for over-50s) or MoneyHelper before doing anything else.
+- If the USER FACTS include a "SCAM ALERT NOTE", treat this seriously but calmly: name the common warning signs of pension scams that seem to apply (cold contact, pressure to act fast, promises of guaranteed or unusually high returns, requests to access a pension before 55), advise never to be rushed into a decision, and direct them to check any firm on the FCA Register and to use FCA ScamSmart before doing anything else. Do not speculate about who contacted them.
+- Structure your response with 2-4 short sections, each starting with a "## Heading" line, using markdown paragraphs and occasional "- " bullet lists.
+- End with a short closing line encouraging them to discuss specifics with an FCA-authorised financial adviser.
+- Keep the whole response under 550 words.`;
+
+const WELLBEING_KEYWORDS = [
+  "struggl","can't afford to retire","cant afford to retire","won't have enough","wont have enough",
+  "scared","worried i","stressed","anxious","depress","unwell","ill health","terminal",
+  "can't cope","cant cope","behind on","redundant","redundancy","losing my"
+];
+
+const SCAM_KEYWORDS = [
+  "cold call","cold-call","someone called me","someone contacted me","text message about my pension",
+  "unsolicited","guaranteed return","guaranteed growth","guaranteed income","too good to be true",
+  "unlock my pension","access before 55","release cash from my pension","pension release",
+  "free pension review","pressured","pressuring","urgent","overseas investment",
+  "unregulated introducer","cryptocurrency pension","crypto investment","claims i can access"
+];
+
+function detectKeywordSignal(answers, keywords){
+  const combined = Object.values(answers).join(" ").toLowerCase();
+  return keywords.some(k => combined.includes(k));
+}
+
+function parseMoneyToNumber(str){
+  if(!str) return null;
+  const cleaned = String(str).replace(/£/g,"").replace(/,/g,"");
+  const numbers = cleaned.match(/\d+(\.\d+)?/g);
+  if(!numbers || numbers.length === 0) return null;
+  const nums = numbers.map(Number).filter(n => !isNaN(n));
+  if(nums.length === 0) return null;
+  return nums.reduce((a,b) => a+b, 0) / nums.length;
+}
+
+function parseNumberLoose(str){
+  if(str === null || str === undefined) return null;
+  const match = String(str).match(/\d+(\.\d+)?/);
+  if(!match) return null;
+  const n = Number(match[0]);
+  return isNaN(n) ? null : n;
+}
+
+function toNum(v, fallback){
+  const n = parseNumberLoose(v);
+  return n === null ? (fallback === undefined ? null : fallback) : n;
+}
+
+function toMoney(v, fallback){
+  const n = parseMoneyToNumber(v);
+  return n === null ? (fallback === undefined ? null : fallback) : n;
+}
+
+function formatGBP(n){
+  if(n === null || n === undefined || isNaN(n)) return "—";
+  return "£" + Math.round(n).toLocaleString('en-GB');
+}
+
+function formatPercent(n){
+  if(n === null || n === undefined || isNaN(n)) return "—";
+  return n.toFixed(1) + "%";
+}
+
+function escapeHtml(str){
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function escapeAttr(v){
+  return String(v === null || v === undefined ? "" : v).replace(/"/g,'&quot;');
+}
+
+// Illustrative Scottish and rest-of-UK income tax bands (recent tax year, subject to
+// annual change — flagged clearly to the person and to the AI as illustrative).
+const SCOT_BANDS = [
+  { upTo:12570,  rate:0,  name:"Personal Allowance" },
+  { upTo:14876,  rate:19, name:"Starter rate" },
+  { upTo:26561,  rate:20, name:"Basic rate" },
+  { upTo:43662,  rate:21, name:"Intermediate rate" },
+  { upTo:75000,  rate:42, name:"Higher rate" },
+  { upTo:125140, rate:45, name:"Advanced rate" },
+  { upTo:Infinity, rate:48, name:"Top rate" }
+];
+const RUK_BANDS = [
+  { upTo:12570,  rate:0,  name:"Personal Allowance" },
+  { upTo:50270,  rate:20, name:"Basic rate" },
+  { upTo:125140, rate:40, name:"Higher rate" },
+  { upTo:Infinity, rate:45, name:"Additional rate" }
+];
+
+function marginalBand(income, bands){
+  for(const b of bands){ if(income <= b.upTo) return b; }
+  return bands[bands.length-1];
+}
+
+// Works out the actual income tax due on a given gross annual income, band by
+// band (not just applying the marginal rate to the whole amount) — the same
+// progressive calculation HMRC and Revenue Scotland use. `bands` gives each
+// band's cumulative upper threshold and rate, e.g. SCOT_BANDS/RUK_BANDS above.
+function calcIncomeTaxDue(grossIncome, bands){
+  if(!grossIncome || grossIncome <= 0) return 0;
+  let tax = 0, prev = 0;
+  for(const b of bands){
+    if(grossIncome <= prev) break;
+    tax += (Math.min(grossIncome, b.upTo) - prev) * (b.rate/100);
+    prev = b.upTo;
+  }
+  return tax;
+}
+
+// Between £100,000 and £125,140 of income, the tax-free personal allowance is
+// withdrawn at £1 for every £2 earned above £100,000 — so someone's zero-rate
+// band shrinks (and can disappear entirely by £125,140). This returns an
+// adjusted copy of `bands` with that first threshold reduced accordingly; the
+// higher thresholds above it are unaffected, since they're already expressed
+// as absolute income levels rather than band widths.
+function personalAllowanceTaperedBands(grossIncome, bands){
+  if(grossIncome <= 100000) return bands;
+  const reducedPA = Math.max(0, bands[0].upTo - (grossIncome - 100000)/2);
+  const adjusted = bands.slice();
+  adjusted[0] = Object.assign({}, bands[0], { upTo: reducedPA });
+  return adjusted;
+}
+
+// Converts one person's combined taxable retirement income for a single year
+// (their own pensions plus their own State Pension, once each is in payment)
+// into a net, after-tax figure. Always uses the Scottish bands: this is a
+// Scotland-focused app, and elsewhere it already defaults to Scottish bands
+// "when Scottish or unsure" — a rest-of-UK taxpayer would keep slightly more
+// of any income taxed above the basic rate. Tax-free elements (a 25% pension
+// lump sum, drawing down savings) are never passed into this function, since
+// they're outside Income Tax entirely.
+function netOfIncomeTax(grossIncome){
+  const g = Math.max(0, grossIncome || 0);
+  if(g <= 0) return { gross:0, tax:0, net:0 };
+  const bands = personalAllowanceTaperedBands(g, SCOT_BANDS);
+  const tax = calcIncomeTaxDue(g, bands);
+  return { gross: g, tax, net: g - tax };
+}
+
+const PENSION_LUMP_SUM_ALLOWANCE = 268275; // illustrative — confirm current allowance before relying on it
+
+// State Pension reference figures for the 2026/27 tax year (confirmed at the Autumn
+// Budget 2025, a 4.8% triple-lock increase). These change every April — treated as a
+// clearly-labelled reference point, never presented as a personalised figure.
+const FULL_NEW_STATE_PENSION_WEEKLY = 241.30;
+const FULL_NEW_STATE_PENSION_ANNUAL = 12547.60;
+
+// Illustrative assumptions used throughout the app's calculators.
+const GROWTH_SCENARIOS = [
+  { label:"Cautious", rate:2 },
+  { label:"Balanced", rate:5 },
+  { label:"Optimistic", rate:8 }
+];
+const ANNUITY_RATE_ASSUMPTION = 5.5;   // illustrative single-life, level annuity rate
+const SUSTAINABLE_WITHDRAWAL_RATE = 4; // the commonly-cited "4% rule" for drawdown
+const SAVINGS_GROWTH_RATE = 2;         // illustrative — savings/cash assumed lower-risk than pension growth
+const CURRENT_YEAR = new Date().getFullYear();
+
+// Simplified UK State Pension age banding, from published DWP timetables: 66 for
+// those born on or before 5 April 1960, phasing to 67 for people born up to 1977,
+// and 68 (legislated, not yet fully confirmed in law for all birth years) beyond
+// that. Takes an exact birth year (from a date of birth) rather than a derived
+// current age, avoiding an off-by-one near a banding boundary depending on
+// whether this year's birthday has passed. The app always offers an optional
+// override and points to the official GOV.UK checker.
+function estimateStatePensionAge(birthYear){
+  if(birthYear === null || birthYear === undefined || isNaN(birthYear)) return null;
+  if(birthYear <= 1960) return 66;
+  if(birthYear <= 1977) return 67;
+  return 68;
+}
+
+// Returns today's date as YYYY-MM-DD, for use as a native <input type="date"> max
+// attribute so the browser itself blocks picking a future date of birth.
+function todayISODate(){
+  const d = new Date();
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const dd = String(d.getDate()).padStart(2,'0');
+  return `${d.getFullYear()}-${mm}-${dd}`;
+}
+
+// Parses a "YYYY-MM-DD" date-of-birth string (as produced by <input type="date">)
+// into a whole-number age in years as of today, or null if the string is missing,
+// malformed, in the future, or implausible (over 115 years old — almost always a
+// typo, and the sort of input that could otherwise silently produce nonsense
+// pension-age maths downstream).
+function ageFromDOB(dobStr){
+  if(!dobStr) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(dobStr).trim());
+  if(!m) return null;
+  const year = parseInt(m[1],10), month = parseInt(m[2],10), day = parseInt(m[3],10);
+  if(year < 1900 || month < 1 || month > 12 || day < 1 || day > 31) return null;
+  const dob = new Date(Date.UTC(year, month-1, day));
+  if(isNaN(dob.getTime()) || dob.getUTCFullYear() !== year || dob.getUTCMonth() !== month-1 || dob.getUTCDate() !== day) return null;
+  const now = new Date();
+  const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+  if(dob.getTime() > today.getTime()) return null; // future date of birth
+  let age = today.getUTCFullYear() - dob.getUTCFullYear();
+  const hadBirthdayThisYear = (today.getUTCMonth() > dob.getUTCMonth()) ||
+    (today.getUTCMonth() === dob.getUTCMonth() && today.getUTCDate() >= dob.getUTCDate());
+  if(!hadBirthdayThisYear) age -= 1;
+  if(age < 0 || age > 115) return null;
+  return age;
+}
+
+// The exact calendar birth year from a "YYYY-MM-DD" date of birth, or null if
+// invalid — used for State Pension age banding, which is defined by birth year.
+function birthYearFromDOB(dobStr){
+  if(ageFromDOB(dobStr) === null) return null;
+  const m = /^(\d{4})-/.exec(String(dobStr).trim());
+  return m ? parseInt(m[1],10) : null;
+}
+
+// Illustrative Police Scotland rank pay scales (top of scale), from the Police
+// Negotiating Board for Scotland's 2026-01 circular (Constable) and third-party
+// aggregation of the 2026 federated/superintending pay scales for other ranks —
+// correct as of the April 2026 pay award. Always confirm actual/expected final
+// pensionable pay with Police Scotland or SPPA rather than relying on this alone.
+const POLICE_RANK_SALARIES = {
+  "Constable": 54597,
+  "Sergeant": 61036,
+  "Inspector": 74853,
+  "Chief Inspector": 80989,
+  "Superintendent": 105632,
+  "Chief Superintendent": 120554
+};
+
+// Police Pension Scheme calculator — a three-period hybrid model reflecting the
+// 2015 reforms and the McCloud remedy, confirmed against SPPA (pensions.gov.scot),
+// the Police Federation's scheme guides, and GOV.UK's PPS 2015 member guide:
+//
+// 1. Legacy period (join date -> 6 Apr 2015): 2006 scheme, final salary, 1/70th
+//    of final pensionable pay per year, capped at 35 years (max half pay). The
+//    "final salary link" means these years are still valued using pay at ACTUAL
+//    retirement, not pay in 2015 — the accrual is frozen, the valuation isn't.
+// 2. Remedy period (6 Apr 2015 -> 31 Mar 2022, ~7 years): by default rolled back
+//    into the legacy scheme, but each officer gets a "deferred choice underpin"
+//    at retirement — the better of legacy (1/70th) or 2015 CARE (1/55.3) treatment
+//    for those years specifically, exactly as set out in their Remediable Service
+//    Statement (RSS). This calculator compares both and takes the larger.
+// 3. Post-remedy period (1 Apr 2022 -> retirement): everyone accrues under the
+//    2015 CARE scheme only, no choice — 1/55.3 of pensionable pay per year.
+//
+// The 2015 scheme's own normal pension age is 60 (not 55), so its portion is
+// reduced by roughly 5% for every year taken before 60 if retiring between 55
+// and 60; the legacy portion is unaffected since its NPA is already 55. The
+// automatic 4x lump sum applies only to the legacy portion — the 2015 scheme has
+// no automatic lump sum, only optional commutation at £12 lump sum per £1 of
+// pension given up (not modelled here; noted to the person instead).
+const REMEDY_START_YEAR = 2015;       // 1 April 2015
+const REMEDY_END_YEAR = 2022;         // 31 March 2022 — remedy period is 1 Apr 2015 to 31 Mar 2022
+const LEGACY_MAX_YEARS = 35;          // 2006 scheme accrual cap — applies to 2006-scheme years only
+const LEGACY_ACCRUAL_DIVISOR = 70;    // 2006 scheme: 1/70th of final pay per year
+const CARE_ACCRUAL_DIVISOR = 55.3;    // 2015 scheme: 1/55.3 of pensionable pay per year (GOV.UK member guide)
+const CARE_NPA = 60;                  // 2015 scheme normal pension age
+const CARE_EARLY_REDUCTION_PER_YEAR = 0.05; // ~5%/yr under 60, illustrative — exact factors are reviewed periodically
+const DEFERRED_PENSION_AGE = 65;      // preserved/deferred benefits, if leaving before immediate-pension eligibility
+
+function computePolicePension(pension, person){
+  const joinYear = toNum(pension.policeJoinYear);
+  const currentAge = ageFromDOB(person.dateOfBirth);
+  const retireAge = toNum(person.targetRetirementAge);
+  const rank = pension.rank || "Constable";
+  const salaryOverride = toMoney(pension.finalSalaryOverride);
+  const salary = salaryOverride !== null ? salaryOverride : (POLICE_RANK_SALARIES[rank] || POLICE_RANK_SALARIES["Constable"]);
+  const remedySalaryOverride = toMoney(pension.remedySalaryOverride);
+  const remedySalary = remedySalaryOverride !== null ? remedySalaryOverride : salary;
+
+  let incomeStartAge, isDeferred = false;
+  if(retireAge === null){ incomeStartAge = 55; }
+  else if(retireAge < 55){ incomeStartAge = DEFERRED_PENSION_AGE; isDeferred = true; }
+  else { incomeStartAge = retireAge; }
+
+  if(joinYear === null){
+    return {
+      type:"police", rank, salary, incomeStartAge, isDeferred, annualIncome:0, lumpSum:0,
+      hybrid:false, legacyYears:0, legacyPension:0, careYears:0, carePension:0, careReductionFactor:1, years:0
+    };
+  }
+
+  // Which calendar year retirement falls in, so we know how much career sits in
+  // each of the three periods above.
+  const retirementYear = (currentAge !== null && retireAge !== null)
+    ? CURRENT_YEAR + Math.max(0, retireAge - currentAge)
+    : CURRENT_YEAR;
+
+  const preRemedyYears = Math.max(0, Math.min(retirementYear, REMEDY_START_YEAR) - joinYear);
+  const cappedPreRemedyYears = Math.min(preRemedyYears, LEGACY_MAX_YEARS);
+  const remedyWindowYears = Math.max(0, Math.min(retirementYear, REMEDY_END_YEAR) - Math.max(joinYear, REMEDY_START_YEAR));
+  const postRemedyYears = Math.max(0, retirementYear - Math.max(joinYear, REMEDY_END_YEAR));
+
+  // Deferred choice underpin: compare legacy vs CARE treatment for the remedy
+  // window specifically (not the whole career), and take whichever is larger.
+  const legacyHeadroom = Math.max(0, LEGACY_MAX_YEARS - cappedPreRemedyYears);
+  const remedyYearsAsLegacy = Math.min(remedyWindowYears, legacyHeadroom);
+  const incrementIfLegacy = salary * remedyYearsAsLegacy / LEGACY_ACCRUAL_DIVISOR;
+  const incrementIfCare = remedySalary * remedyWindowYears / CARE_ACCRUAL_DIVISOR;
+  const chooseLegacyForRemedy = incrementIfLegacy >= incrementIfCare;
+
+  const legacyYears = cappedPreRemedyYears + (chooseLegacyForRemedy ? remedyYearsAsLegacy : 0);
+  const legacyPension = salary * legacyYears / LEGACY_ACCRUAL_DIVISOR;
+
+  const careYearsFromRemedy = chooseLegacyForRemedy ? 0 : remedyWindowYears;
+  const careYears = careYearsFromRemedy + postRemedyYears;
+  const carePensionRaw = (remedySalary * careYearsFromRemedy / CARE_ACCRUAL_DIVISOR) + (salary * postRemedyYears / CARE_ACCRUAL_DIVISOR);
+
+  let careReductionFactor = 1;
+  if(retireAge !== null && retireAge >= 55 && retireAge < CARE_NPA){
+    careReductionFactor = Math.max(0, 1 - CARE_EARLY_REDUCTION_PER_YEAR * (CARE_NPA - retireAge));
+  }
+  const carePension = carePensionRaw * careReductionFactor;
+
+  const annualIncome = legacyPension + carePension;
+  const lumpSum = legacyPension * 4; // automatic lump sum applies only to the legacy final-salary portion
+
+  return {
+    type:"police", rank, salary, incomeStartAge, isDeferred, annualIncome, lumpSum,
+    hybrid: legacyYears > 0 && careYears > 0,
+    legacyYears, legacyPension, careYears, carePension, careReductionFactor, chooseLegacyForRemedy,
+    years: legacyYears + careYears
+  };
+}
+
+function computeTaxRelief(answers){
+  const income = parseMoneyToNumber(answers.gross_income);
+  const netContribution = parseMoneyToNumber(answers.annual_contribution);
+  if(income === null || netContribution === null || income <= 0 || netContribution <= 0) return null;
+
+  const isRUK = answers.scottish_taxpayer === "No, I live elsewhere in the UK";
+  const bands = isRUK ? RUK_BANDS : SCOT_BANDS; // default to Scottish bands when Scottish or unsure
+  const band = marginalBand(income, bands);
+  const taperNote = income > 100000 && income <= 125140;
+  const isNetPay = answers.contribution_method === "Net pay or salary sacrifice";
+
+  if(isNetPay){
+    return {
+      kind: "tax-relief", method: "netpay", income, netContribution,
+      bandName: band.name, bandRate: band.rate, isRUK, taperNote
+    };
+  }
+
+  const grossContribution = netContribution / 0.8;
+  const basicReliefAdded = grossContribution - netContribution;
+  const extraRate = Math.max(0, band.rate - 20);
+  const extraReliefClaimable = extraRate > 0 ? grossContribution * (extraRate / 100) : 0;
+  const starterBonus = !isRUK && band.rate === 19;
+
+  return {
+    kind: "tax-relief", method: "ras", income, netContribution, grossContribution,
+    basicReliefAdded, extraReliefClaimable, bandName: band.name, bandRate: band.rate,
+    isRUK, taperNote, starterBonus
+  };
+}
+
+function futureValue(pot, monthlyContribution, years, annualRatePercent){
+  const r = (annualRatePercent/100)/12;
+  const n = Math.round(Math.max(0,years)*12);
+  if(n <= 0) return pot;
+  if(r === 0) return pot + monthlyContribution*n;
+  return pot*Math.pow(1+r, n) + monthlyContribution*((Math.pow(1+r, n)-1)/r);
+}
+
+function computePotProjection(answers){
+  const currentPot = parseMoneyToNumber(answers.current_pot);
+  const monthlyContribution = parseMoneyToNumber(answers.monthly_contribution);
+  const years = parseNumberLoose(answers.years_to_retirement);
+  if(currentPot === null || monthlyContribution === null || years === null || years <= 0) return null;
+
+  const results = GROWTH_SCENARIOS.map(s => ({
+    label: s.label, rate: s.rate, value: futureValue(currentPot, monthlyContribution, years, s.rate)
+  }));
+  const midValue = results[1].value;
+  const lumpSumEstimate = Math.min(0.25*midValue, PENSION_LUMP_SUM_ALLOWANCE);
+
+  return { kind:"pot-projection", currentPot, monthlyContribution, years, results, lumpSumEstimate };
+}
+
+function computeNIYears(answers){
+  const soFar = parseNumberLoose(answers.ni_years_so_far);
+  if(soFar === null) return null;
+  const left = parseNumberLoose(answers.years_left_working) || 0;
+  const projected = soFar + left;
+  return { kind:"ni-years", soFar, left, projected, cappedProjected: Math.min(projected, 35) };
+}
+
+// ============================================================================
+// Household pension forecast engine — supports a single person or a couple,
+// each with any number of pensions of different types, plus household savings
+// and a target retirement income, and projects whether/when that target is met.
+// ============================================================================
+
+function makeEmptyPerson(){
+  return {
+    dateOfBirth: "", targetRetirementAge: "",
+    niYearsSoFar: "", yearsLeftWorking: "", statePensionKnownAmount: "", statePensionAgeOverride: "",
+    pensions: []
+  };
+}
+
+function makeEmptyForecastData(){
+  return {
+    householdType: "",
+    people: [ makeEmptyPerson() ],
+    savings: { currentSavings: "", monthlyContribution: "" },
+    annualRequiredIncome: ""
+  };
+}
+
+function makeEmptyPensionDraft(){
+  return {
+    type:"", currentValue:"", monthlyContribution:"", annualIncome:"", incomeStartAge:"", annualIncomeNow:"",
+    policeJoinYear:"", rank:"Constable", finalSalaryOverride:"", remedySalaryOverride:"",
+    takeLumpSum: true
+  };
+}
+
+function personLabel(idx){
+  return idx === 0 ? "You" : "Your partner";
+}
+
+function isPensionDraftValid(draft){
+  if(draft.type === "dc") return toMoney(draft.currentValue) !== null || toMoney(draft.monthlyContribution) !== null;
+  if(draft.type === "db") return toMoney(draft.annualIncome) !== null;
+  if(draft.type === "inpayment") return toMoney(draft.annualIncomeNow) !== null;
+  if(draft.type === "police") return toNum(draft.policeJoinYear) !== null && !!draft.rank;
+  return false;
+}
+
+// Grows and converts every pension belonging to one person into a retirement
+// income figure, using the type-appropriate recognised method: compound growth
+// + 25% tax-free lump sum + 4% drawdown rule for defined contribution pots;
+// the person's own stated promised income for defined benefit pensions; and
+// the stated current income for pensions already in payment.
+function computePersonPensions(person){
+  const currentAge = ageFromDOB(person.dateOfBirth);
+  const retireAge = toNum(person.targetRetirementAge);
+  const years = (currentAge !== null && retireAge !== null) ? Math.max(0, retireAge - currentAge) : 0;
+
+  const pensions = (person.pensions || []).map(p => {
+    if(p.type === "dc"){
+      const pot = toMoney(p.currentValue, 0);
+      const monthly = toMoney(p.monthlyContribution, 0);
+      const potAtRetirement = futureValue(pot, monthly, years, GROWTH_SCENARIOS[1].rate);
+      const takeLumpSum = p.takeLumpSum !== false; // default true — matches the app's original always-on behaviour
+      const lumpSum = takeLumpSum ? Math.min(0.25*potAtRetirement, PENSION_LUMP_SUM_ALLOWANCE) : 0;
+      const potAfterLumpSum = Math.max(0, potAtRetirement - lumpSum);
+      const annualIncome = potAfterLumpSum * (SUSTAINABLE_WITHDRAWAL_RATE/100);
+      return { type:"dc", potAtRetirement, lumpSum, potAfterLumpSum, annualIncome, incomeStartAge: retireAge, takeLumpSum };
+    }
+    if(p.type === "db"){
+      const annualIncome = toMoney(p.annualIncome, 0);
+      const startAgeParsed = toNum(p.incomeStartAge);
+      const incomeStartAge = startAgeParsed !== null ? startAgeParsed : retireAge;
+      return { type:"db", annualIncome, incomeStartAge };
+    }
+    if(p.type === "inpayment"){
+      const annualIncome = toMoney(p.annualIncomeNow, 0);
+      return { type:"inpayment", annualIncome, incomeStartAge: currentAge };
+    }
+    if(p.type === "police"){
+      return computePolicePension(p, person);
+    }
+    return null;
+  }).filter(Boolean);
+
+  return { currentAge, retireAge, years, pensions };
+}
+
+function computePersonStatePension(person){
+  const spaOverride = toNum(person.statePensionAgeOverride);
+  const spa = spaOverride !== null ? spaOverride : estimateStatePensionAge(birthYearFromDOB(person.dateOfBirth));
+  const knownSP = toMoney(person.statePensionKnownAmount);
+  const niYearsSoFar = toNum(person.niYearsSoFar, 0);
+  const yearsLeftWorking = toNum(person.yearsLeftWorking, 0);
+
+  let amount, source;
+  if(knownSP !== null && knownSP > 0){
+    amount = knownSP;
+    source = "known";
+  } else {
+    const projectedYears = Math.min(niYearsSoFar + yearsLeftWorking, 35);
+    amount = projectedYears >= 10 ? (projectedYears/35) * FULL_NEW_STATE_PENSION_ANNUAL : 0;
+    source = "estimated";
+  }
+  return { spa, amount, source, niYearsSoFar, yearsLeftWorking };
+}
+
+function computeSavingsProjection(savings, yearsToGrow){
+  const current = toMoney((savings || {}).currentSavings, 0);
+  const monthly = toMoney((savings || {}).monthlyContribution, 0);
+  const balanceAtStart = futureValue(current, monthly, Math.max(0, yearsToGrow), SAVINGS_GROWTH_RATE);
+  return { current, monthly, balanceAtStart };
+}
+
+// Offsets a single year's income shortfall against the household's savings pot —
+// the core "draw on savings to cover the gap" step, applied once per year of the
+// forecast. Draws down pound-for-pound, never below zero and never more than the
+// shortfall itself, and reports what's left of both afterwards.
+function applySavingsOffset(shortfall, savingsBalance){
+  const gap = Math.max(0, shortfall || 0);
+  const balance = Math.max(0, savingsBalance || 0);
+  const savingsUsed = Math.min(gap, balance);
+  return {
+    savingsUsed,
+    remainingShortfall: gap - savingsUsed,
+    remainingBalance: balance - savingsUsed
+  };
+}
+
+// Groups a year-by-year income timeline into distinct "phases" — each time a
+// new income source switches on, since income for pensions + State Pension
+// only ever increases over time by construction. Keeps the results panel to a
+// handful of readable rows rather than one row per year.
+function deriveIncomePhases(timelineRows){
+  const phases = [];
+  let lastIncome = null;
+  timelineRows.forEach(row => {
+    if(lastIncome === null || Math.abs(row.totalIncome - lastIncome) > 0.5){
+      phases.push({
+        startAge: row.p1Age, totalIncome: row.totalIncome, grossIncome: row.grossIncome, taxDue: row.taxDue,
+        shortfall: row.shortfall, savingsUsed: row.savingsUsed
+      });
+      lastIncome = row.totalIncome;
+    }
+  });
+  return phases.slice(0, 8);
+}
+
+// The main household forecast: builds a year-by-year cashflow from the point
+// the household first wants its target income, tracking every pension and
+// State Pension coming online at its own correct age, drawing on savings to
+// bridge any gap, and reporting whether/when the target is met.
+// The core household forecast, with no knowledge of the "calculated retirement
+// age" search below — kept separate so that search (which re-runs this function
+// many times with a trial retirement age) can never recurse into itself via the
+// public computeHouseholdForecast wrapper.
+function computeHouseholdForecastCore(forecastData){
+  const people = forecastData.people || [];
+  if(people.length === 0) return null;
+
+  const p1 = people[0];
+  const p1Age = ageFromDOB(p1.dateOfBirth);
+  if(p1Age === null) return null;
+
+  const personResults = people.map(p => ({
+    currentAge: ageFromDOB(p.dateOfBirth),
+    retireAge: toNum(p.targetRetirementAge),
+    pensionInfo: computePersonPensions(p),
+    spInfo: computePersonStatePension(p)
+  }));
+
+  const validPeople = personResults.filter(pr => pr.currentAge !== null && pr.retireAge !== null);
+  if(validPeople.length === 0) return null;
+
+  const requiredIncome = toMoney(forecastData.annualRequiredIncome);
+  const incomeNeedStartOffset = Math.max(0, Math.min(...validPeople.map(pr => pr.retireAge - p1Age)));
+
+  // Determine how far out the timeline needs to run: past every pension's and
+  // every State Pension's own start age, clamped to a sane maximum so a typo
+  // (e.g. an income-start age of 999) can never hang the calculation.
+  let maxStartOffset = incomeNeedStartOffset;
+  personResults.forEach(pr => {
+    if(pr.currentAge === null) return;
+    (pr.pensionInfo.pensions || []).forEach(pen => {
+      if(pen.incomeStartAge !== null && pen.incomeStartAge !== undefined){
+        maxStartOffset = Math.max(maxStartOffset, pen.incomeStartAge - pr.currentAge);
+      }
+    });
+    if(pr.spInfo.spa !== null){
+      maxStartOffset = Math.max(maxStartOffset, pr.spInfo.spa - pr.currentAge);
+    }
+  });
+  const steadyStateOffset = Math.min(Math.round(maxStartOffset), incomeNeedStartOffset + 60);
+
+  const savingsProjection = computeSavingsProjection(forecastData.savings, incomeNeedStartOffset);
+  let savingsBalance = savingsProjection.balanceAtStart;
+
+  const timeline = [];
+  const loopEnd = Math.max(steadyStateOffset, incomeNeedStartOffset) + 1;
+
+  for(let offset = incomeNeedStartOffset; offset <= loopEnd; offset++){
+    let pensionIncome = 0;
+    let statePensionIncome = 0;
+    let taxDue = 0;
+
+    // Income Tax is worked out per person, not per household — each person's
+    // own pensions and their own State Pension (once each is in payment) are
+    // added together and taxed on that individual's bands, before the two
+    // people's after-tax incomes are combined into a household total.
+    personResults.forEach(pr => {
+      if(pr.currentAge === null) return;
+      const ageAtOffset = pr.currentAge + offset;
+      let personGrossPension = 0;
+      (pr.pensionInfo.pensions || []).forEach(pen => {
+        if(pen.incomeStartAge !== null && pen.incomeStartAge !== undefined && ageAtOffset >= pen.incomeStartAge){
+          personGrossPension += pen.annualIncome || 0;
+        }
+      });
+      let personGrossSP = 0;
+      if(pr.spInfo.spa !== null && ageAtOffset >= pr.spInfo.spa){
+        personGrossSP = pr.spInfo.amount || 0;
+      }
+      pensionIncome += personGrossPension;
+      statePensionIncome += personGrossSP;
+      taxDue += netOfIncomeTax(personGrossPension + personGrossSP).tax;
+    });
+
+    const grossIncome = pensionIncome + statePensionIncome;
+    const totalIncome = Math.max(0, grossIncome - taxDue); // net household income, after estimated Income Tax
+    let shortfall = requiredIncome !== null ? Math.max(0, requiredIncome - totalIncome) : 0;
+    let savingsUsed = 0;
+
+    const offsetResult = applySavingsOffset(shortfall, savingsBalance);
+    savingsUsed = offsetResult.savingsUsed;
+    savingsBalance = offsetResult.remainingBalance;
+    shortfall = offsetResult.remainingShortfall;
+
+    timeline.push({
+      offset, p1Age: p1Age + offset, pensionIncome, statePensionIncome, grossIncome, taxDue, totalIncome,
+      savingsUsed, shortfall
+    });
+
+    savingsBalance = savingsBalance * (1 + SAVINGS_GROWTH_RATE/100);
+  }
+
+  let bridgeGapExists = false;
+  let bridgeFullyCoveredBySavings = true;
+  let firstUnmetShortfallAge = null;
+  let firstUnmetShortfallAmount = null;
+
+  timeline.forEach(row => {
+    if(row.offset > steadyStateOffset) return;
+    const rawShortfall = requiredIncome !== null ? Math.max(0, requiredIncome - row.totalIncome) : 0;
+    if(rawShortfall > 0.01) bridgeGapExists = true;
+    if(row.shortfall > 0.01){
+      bridgeFullyCoveredBySavings = false;
+      if(firstUnmetShortfallAge === null){
+        firstUnmetShortfallAge = row.p1Age;
+        firstUnmetShortfallAmount = row.shortfall;
+      }
+    }
+  });
+  if(!bridgeGapExists) bridgeFullyCoveredBySavings = true;
+
+  const steadyStateRow = timeline.find(r => r.offset === steadyStateOffset) || timeline[timeline.length-1];
+  const phases = deriveIncomePhases(timeline.filter(r => r.offset <= steadyStateOffset));
+
+  return {
+    kind: "household-forecast",
+    householdType: forecastData.householdType || (people.length > 1 ? "Couple" : "Single"),
+    numPeople: people.length,
+    personResults,
+    requiredIncome,
+    incomeNeedStartAge: p1Age + incomeNeedStartOffset,
+    savingsProjection,
+    steadyStateAge: p1Age + steadyStateOffset,
+    steadyStateIncome: steadyStateRow ? steadyStateRow.totalIncome : 0,
+    steadyStateGrossIncome: steadyStateRow ? steadyStateRow.grossIncome : 0,
+    steadyStateTax: steadyStateRow ? steadyStateRow.taxDue : 0,
+    phases,
+    bridgeGapExists,
+    bridgeFullyCoveredBySavings,
+    firstUnmetShortfallAge,
+    firstUnmetShortfallAmount
+  };
+}
+
+// The oldest age the search below will try before giving up and reporting the
+// target as not achievable with the figures given.
+const RETIREMENT_AGE_SEARCH_CAP = 80;
+
+// Works out the earliest age one person in the household could retire (i.e. set
+// their own target retirement age to) and have the household's required annual
+// income sustainably met — meaning any gap before every pension/State Pension is
+// in payment is fully bridged by savings, AND the steady-state income once
+// everything is in payment meets the target on its own (savings alone can't
+// sustain a permanent shortfall). Every other input — the partner's plans,
+// pension values, savings — is held fixed; only this one person's retirement age
+// is varied, candidate by candidate, from their current age up to a sanity cap.
+// This directly drives every DC pot's growth years and start age, every DB/police
+// pension's start age where not explicitly overridden, and (for a Police pension)
+// how much legacy vs CARE service has accrued by that age — so a later candidate
+// age is re-run through the full pension and State Pension engine each time,
+// not just assumed to produce proportionally more income. Always runs against
+// the core forecast function, never the public wrapper, so it cannot recurse.
+function findEarliestSustainableRetirementAge(forecastData, personIndex){
+  const requiredIncome = toMoney(forecastData.annualRequiredIncome);
+  if(requiredIncome === null) return { achievable: null, reason: "no-target-income" };
+
+  const person = (forecastData.people || [])[personIndex];
+  if(!person) return { achievable: null, reason: "no-person" };
+
+  const startAge = ageFromDOB(person.dateOfBirth);
+  if(startAge === null) return { achievable: null, reason: "no-dob" };
+
+  for(let candidate = startAge; candidate <= RETIREMENT_AGE_SEARCH_CAP; candidate++){
+    const trialData = JSON.parse(JSON.stringify(forecastData));
+    trialData.people[personIndex].targetRetirementAge = String(candidate);
+    const result = computeHouseholdForecastCore(trialData);
+    if(!result) continue;
+    const bridgeOk = !result.bridgeGapExists || result.bridgeFullyCoveredBySavings;
+    const steadyOk = result.steadyStateIncome >= requiredIncome - 0.5;
+    if(bridgeOk && steadyOk){
+      return { achievable: true, age: candidate };
+    }
+  }
+  return { achievable: false, age: null, reason: "not-within-search-cap" };
+}
+
+// Public entry point: the core forecast, plus (when a target income is given)
+// the earliest sustainable retirement age for each person in the household.
+function computeHouseholdForecast(forecastData){
+  const core = computeHouseholdForecastCore(forecastData);
+  if(!core) return null;
+  const calculatedRetirementAges = (forecastData.people || []).map((p, idx) =>
+    findEarliestSustainableRetirementAge(forecastData, idx)
+  );
+  return Object.assign({}, core, { calculatedRetirementAges });
+}
+
+// ============================================================================
+// App state and generic (single-question) module flow — unchanged pattern used
+// by the six supporting modules (fact-find, tax relief, pot projection, etc).
+// ============================================================================
+
+let state = {
+  screen: "home",       // home | question | forecast | loading | advice | error
+  module: null,
+  qIndex: 0,
+  answers: {},           // shared profile for the six generic modules — persists all session
+  forecastData: makeEmptyForecastData(),
+  forecastStepIndex: 0,
+  pensionDraft: makeEmptyPensionDraft(),
+  adviceHtml: "",
+  errorText: "",
+  calcResults: null,
+  wellbeingFlag: false,
+  scamFlag: false,
+  usedLocalFallback: false
+};
+
+function setState(patch){
+  state = Object.assign({}, state, patch);
+  render();
+}
+
+function renderHeader(){
+  return `
+    <header class="masthead">
+      <div class="brand">
+        <div class="cairn-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h1>CAS</h1>
+      </div>
+      <span class="tag">waymarkers for your pension</span>
+      <svg class="peaks" viewBox="0 0 760 46" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,46 L110,10 L180,30 L260,4 L340,28 L430,14 L520,32 L610,8 L690,26 L760,16 L760,46 Z" fill="rgba(255,255,255,0.10)"/>
+        <path d="M0,46 L70,24 L150,36 L240,18 L330,38 L420,22 L500,40 L590,20 L670,34 L760,24 L760,46 Z" fill="rgba(255,255,255,0.06)"/>
+      </svg>
+    </header>
+  `;
+}
+
+function renderWellbeingBanner(){
+  return `
+    <div class="support-banner" role="note">
+      <p><strong>If retirement is feeling worrying or overwhelming right now,</strong> you don't have to work it out alone or in a rush.</p>
+      <p>Free, impartial pension guidance: <a href="https://www.pensionwise.gov.uk" target="_blank" rel="noopener">Pension Wise</a> (if you're 50+) · <a href="https://www.moneyhelper.org.uk" target="_blank" rel="noopener">MoneyHelper</a>.</p>
+    </div>
+  `;
+}
+
+function renderScamBanner(){
+  return `
+    <div class="scam-banner" role="alert">
+      <p><strong>Something here has the hallmarks of a pension scam.</strong> Never feel rushed into moving or accessing a pension — genuine advisers won't pressure you.</p>
+      <p>Check any firm on the <a href="https://register.fca.org.uk/s/" target="_blank" rel="noopener">FCA Register</a>, and use <a href="https://www.fca.org.uk/scamsmart" target="_blank" rel="noopener">FCA ScamSmart</a> before doing anything else.</p>
+    </div>
+  `;
+}
+
+const MODULE_ICONS = {
+  "forecast": '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 3.5v2.4M12 18.1v2.4M20.5 12h-2.4M5.9 12H3.5"/>',
+  "fact-find": '<rect x="6" y="4" width="12" height="16" rx="2"/><path d="M9 3.6h6a1 1 0 0 1 1 1V6H8V4.6a1 1 0 0 1 1-1Z"/><path d="M9 11h6M9 14.3h6M9 7.7h3"/>',
+  "tax-relief": '<circle cx="8.5" cy="8.5" r="3.4"/><circle cx="15.5" cy="15.5" r="3.4"/><path d="M6 18 18 6"/>',
+  "pot-projection": '<path d="M4 19V9.5M9.5 19V5M15 19v-7M20 19V11"/><path d="M4 19h16"/>',
+  "state-pension": '<path d="M12 3.4 19 6v5.4c0 4.6-3 7.9-7 9.2-4-1.3-7-4.6-7-9.2V6l7-2.6Z"/><path d="m9 12 2 2 4-4.4"/>',
+  "income-options": '<path d="M6 4v16M6 4l12 5-12 5"/>',
+  "death-benefits": '<path d="M12 20.4S4 15.6 4 9.8A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 8 2.8c0 5.8-8 10.6-8 10.6Z"/>'
+};
+
+function renderHome(){
+  const featured = MODULES.find(m => m.featured);
+  const rest = MODULES.filter(m => !m.featured);
+
+  const restCards = rest.map(m => `
+    <button class="way-card" data-module="${m.id}">
+      <span class="way-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${MODULE_ICONS[m.id] || ''}</svg></span>
+      <span class="way-text">
+        <span class="way-title">${m.title}</span>
+        <span class="way-desc">${m.description}</span>
+      </span>
+      <span class="way-arrow" aria-hidden="true">→</span>
+    </button>
+  `).join("");
+
+  return `
+    ${renderHeader()}
+    <p class="intro">Work through a short set of questions on whichever waypoint is on your mind. Answers you give in one section — like your age or pot size — carry over wherever else they're relevant, so you won't be asked twice.</p>
+
+    <button class="hero-card" data-module="${featured.id}">
+      <span class="hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${MODULE_ICONS[featured.id]}</svg></span>
+      <span class="hero-copy">
+        <span class="hero-eyebrow">Flagship calculator</span>
+        <span class="hero-title">${featured.title}</span>
+        <span class="hero-desc">${featured.description}</span>
+      </span>
+      <span class="hero-cta">Start forecast <span aria-hidden="true">→</span></span>
+    </button>
+
+    <h2 class="section-heading">Or explore a single topic</h2>
+    <div class="waypoints">${restCards}</div>
+    <details class="data-note">
+      <summary>How your data is handled</summary>
+      <p>Your answers are sent directly to Claude to generate the guidance you see, and aren't stored on a server by this app. Closing or refreshing this page clears everything — nothing is saved for next time.</p>
+    </details>
+    <div class="home-actions">
+      <button class="btn btn-ghost" id="reset-all-btn">Clear all my answers</button>
+    </div>
+  `;
+}
+
+function renderQuestion(){
+  const m = state.module;
+  const q = m.questions[state.qIndex];
+  const total = m.questions.length;
+  const current = state.answers[q.id] || "";
+
+  let controlHtml = "";
+  if(q.type === "select"){
+    controlHtml = `<div class="options" role="radiogroup" aria-labelledby="question-label">` + q.options.map(opt => `
+      <button class="option-btn ${current === opt ? 'selected' : ''}" role="radio" aria-checked="${current === opt}" data-option="${escapeAttr(opt)}">${opt}</button>
+    `).join("") + `</div>`;
+  } else if(q.type === "textarea"){
+    controlHtml = `<textarea id="text-input" aria-labelledby="question-label" placeholder="${q.placeholder || ''}">${escapeHtml(current)}</textarea>`;
+  } else {
+    controlHtml = `<input type="text" id="text-input" aria-labelledby="question-label" placeholder="${q.placeholder || ''}" value="${escapeAttr(current)}">`;
+  }
+
+  const isLast = state.qIndex === total - 1;
+  const canContinue = q.type === "textarea" ? true : (current && current.length > 0);
+  const showWellbeing = detectKeywordSignal(state.answers, WELLBEING_KEYWORDS);
+  const showScam = detectKeywordSignal(state.answers, SCAM_KEYWORDS);
+  const prefilled = Boolean(current) && (q.type !== "select");
+
+  return `
+    ${renderHeader()}
+    <div class="card" tabindex="-1">
+      <div class="eyebrow-row">
+        <span class="module-name">${m.title}</span>
+        <span class="progress-text">Question ${state.qIndex + 1} of ${total}</span>
+      </div>
+      ${showScam ? renderScamBanner() : ""}
+      ${showWellbeing ? renderWellbeingBanner() : ""}
+      <p class="question-label" id="question-label">${q.label}</p>
+      ${controlHtml}
+      ${prefilled ? "<p class=\"field-hint\">Carried over from an earlier answer — change it if it's no longer right.</p>" : ''}
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="back-btn">${state.qIndex === 0 ? 'Back to waypoints' : 'Back'}</button>
+        <button class="btn btn-primary" id="continue-btn" ${canContinue ? '' : 'disabled'}>${isLast ? 'Get guidance' : 'Continue'}</button>
+      </div>
+    </div>
+  `;
+}
+
+// ============================================================================
+// Forecast builder — a bespoke multi-step flow (household type, then per-person
+// basics / pensions / State Pension, then savings, then target income) rather
+// than the generic one-question-per-screen wizard, since it needs dynamic,
+// repeatable pension entries and an optional second person.
+// ============================================================================
+
+function getForecastSteps(fd){
+  const steps = [ { id:"household" } ];
+  const n = fd.householdType === "Couple" ? 2 : 1;
+  for(let i=0;i<n;i++){
+    steps.push({ id:"person-basics", personIndex:i });
+    steps.push({ id:"person-pensions", personIndex:i });
+    steps.push({ id:"person-statepension", personIndex:i });
+  }
+  steps.push({ id:"savings" });
+  steps.push({ id:"income-need" });
+  return steps;
+}
+
+function isHouseholdStepValid(fd){ return fd.householdType === "Single" || fd.householdType === "Couple"; }
+function isPersonBasicsValid(p){ return ageFromDOB(p.dateOfBirth)!==null && toNum(p.targetRetirementAge)!==null; }
+function isStatePensionStepValid(p){ return toNum(p.niYearsSoFar)!==null; }
+function isIncomeNeedStepValid(fd){ return toMoney(fd.annualRequiredIncome)!==null; }
+
+function canContinueForecastStep(step, fd){
+  if(step.id === "household") return isHouseholdStepValid(fd);
+  if(step.id === "person-basics") return isPersonBasicsValid(fd.people[step.personIndex] || makeEmptyPerson());
+  if(step.id === "person-pensions") return true;
+  if(step.id === "person-statepension") return isStatePensionStepValid(fd.people[step.personIndex] || makeEmptyPerson());
+  if(step.id === "savings") return true;
+  if(step.id === "income-need") return isIncomeNeedStepValid(fd);
+  return true;
+}
+
+function renderForecastStepHousehold(fd){
+  return `
+    <p class="question-label" id="question-label">Are you planning as an individual, or as a couple?</p>
+    <p class="step-subtitle">A couple household combines both people's pensions, savings, and State Pensions into one household income picture.</p>
+    <div class="options" role="radiogroup" aria-labelledby="question-label">
+      <button class="option-btn ${fd.householdType==='Single'?'selected':''}" data-household="Single">Just me</button>
+      <button class="option-btn ${fd.householdType==='Couple'?'selected':''}" data-household="Couple">Me and my partner</button>
+    </div>
+  `;
+}
+
+function renderForecastStepPersonBasics(fd, personIndex){
+  const p = fd.people[personIndex] || makeEmptyPerson();
+  const derivedAge = ageFromDOB(p.dateOfBirth);
+  return `
+    <p class="question-label" id="question-label">${personLabel(personIndex)} — the basics</p>
+    <div class="form-field">
+      <label class="field-label" for="pf-dob">Date of birth</label>
+      <input type="date" id="pf-dob" min="1900-01-01" max="${todayISODate()}" value="${escapeAttr(p.dateOfBirth)}">
+      <p class="field-hint">${derivedAge !== null ? `That makes ${personLabel(personIndex).toLowerCase()} ${derivedAge} now.` : "Used to work out age-related pension and State Pension rules precisely — never shown to anyone else."}</p>
+    </div>
+    <div class="form-field">
+      <label class="field-label" for="pf-retire">Target retirement age</label>
+      <input type="text" id="pf-retire" placeholder="e.g. 65" value="${escapeAttr(p.targetRetirementAge)}">
+    </div>
+  `;
+}
+
+function renderPensionCard(pen, index){
+  let detail = "";
+  let typeLabel = "";
+  if(pen.type === "dc"){
+    typeLabel = "Defined contribution";
+    detail = `Pot ${formatGBP(parseMoneyToNumber(pen.currentValue)||0)} now · ${formatGBP(parseMoneyToNumber(pen.monthlyContribution)||0)}/mo in · ${pen.takeLumpSum !== false ? '25% lump sum taken' : 'no lump sum — full pot drawn as income'}`;
+  } else if(pen.type === "db"){
+    typeLabel = "Defined benefit";
+    detail = `${formatGBP(parseMoneyToNumber(pen.annualIncome)||0)}/yr from age ${pen.incomeStartAge || '—'}`;
+  } else if(pen.type === "inpayment"){
+    typeLabel = "Already in payment";
+    detail = `${formatGBP(parseMoneyToNumber(pen.annualIncomeNow)||0)}/yr, ongoing`;
+  } else if(pen.type === "police"){
+    typeLabel = "Police / public sector pension";
+    detail = `${pen.rank || 'Constable'} · joined ${pen.policeJoinYear || '—'} · legacy 2006 scheme to 2015, then 2015 CARE`;
+  }
+  return `
+    <div class="pension-card">
+      <div class="pension-card-info">
+        <span class="pension-type-label">${typeLabel}</span>
+        <span class="pension-card-detail">${detail}</span>
+      </div>
+      <button class="pension-card-remove" data-remove-pension="${index}" type="button" aria-label="Remove this pension">Remove</button>
+    </div>
+  `;
+}
+
+function renderForecastStepPensions(fd, personIndex, draft){
+  const p = fd.people[personIndex] || makeEmptyPerson();
+  const pensions = p.pensions || [];
+
+  const listHtml = pensions.length
+    ? pensions.map((pen,i) => renderPensionCard(pen,i)).join("")
+    : `<p class="empty-state">No pensions added yet for ${personLabel(personIndex).toLowerCase()} — add one below, or continue with none.</p>`;
+
+  let draftFieldsHtml = "";
+  if(draft.type === "dc"){
+    draftFieldsHtml = `
+      <div class="form-field"><label class="field-label" for="pd-current-value">Current pot value</label><input type="text" id="pd-current-value" placeholder="e.g. £85,000" value="${escapeAttr(draft.currentValue)}"></div>
+      <div class="form-field"><label class="field-label" for="pd-monthly">Monthly contribution (incl. employer)</label><input type="text" id="pd-monthly" placeholder="e.g. £450" value="${escapeAttr(draft.monthlyContribution)}"></div>
+      <div class="field-checkbox-row">
+        <input type="checkbox" id="pd-take-lump-sum" ${draft.takeLumpSum !== false ? 'checked' : ''}>
+        <label for="pd-take-lump-sum">Take the 25% tax-free lump sum at retirement</label>
+      </div>
+      <p class="field-hint">Leave this checked to model taking the usual 25% tax-free lump sum up front (capped at the illustrative allowance) before the rest of the pot is drawn down. Untick it to leave the whole pot invested and drawn as taxable income instead — this gives a higher ongoing income but no upfront lump sum.</p>
+    `;
+  } else if(draft.type === "db"){
+    draftFieldsHtml = `
+      <div class="form-field"><label class="field-label" for="pd-annual-income">Expected annual income promised</label><input type="text" id="pd-annual-income" placeholder="e.g. £6,000" value="${escapeAttr(draft.annualIncome)}"></div>
+      <div class="form-field"><label class="field-label" for="pd-start-age">Age this income starts</label><input type="text" id="pd-start-age" placeholder="e.g. ${escapeAttr(p.targetRetirementAge) || '65'}" value="${escapeAttr(draft.incomeStartAge)}"></div>
+      <p class="field-hint">Defined benefit schemes often let you exchange some pension for a lump sum at scheme-specific commutation rates rather than a flat 25% — this isn't modelled here, since exact terms vary by scheme. Enter the annual income you'd actually receive after any lump sum choice you plan to make.</p>
+    `;
+  } else if(draft.type === "inpayment"){
+    draftFieldsHtml = `
+      <div class="form-field"><label class="field-label" for="pd-income-now">Current annual income from this pension</label><input type="text" id="pd-income-now" placeholder="e.g. £4,200" value="${escapeAttr(draft.annualIncomeNow)}"></div>
+    `;
+  } else if(draft.type === "police"){
+    const rankKeys = Object.keys(POLICE_RANK_SALARIES);
+    draftFieldsHtml = `
+      <div class="form-field">
+        <label class="field-label" for="pd-police-join-year">Year they joined the police pension scheme</label>
+        <input type="text" id="pd-police-join-year" placeholder="e.g. 2006" value="${escapeAttr(draft.policeJoinYear)}">
+        <p class="field-hint">If this is before 1 April 2015, we automatically model the legacy 2006 final-salary scheme up to the 2015 reforms, the 2015–2022 remedy period (McCloud "deferred choice underpin"), and mandatory 2015 CARE accrual afterwards — no need to choose a scheme yourself.</p>
+      </div>
+      <div class="form-field">
+        <label class="field-label" for="pd-police-rank">Rank expected at retirement</label>
+        <select id="pd-police-rank">
+          ${rankKeys.map(r => `<option value="${escapeAttr(r)}" ${draft.rank===r?'selected':''}>${r}</option>`).join("")}
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="field-label" for="pd-police-salary">Final salary override (optional)</label>
+        <input type="text" id="pd-police-salary" placeholder="e.g. £61,036 — leave blank to use ${draft.rank||'Constable'}'s illustrative pay" value="${escapeAttr(draft.finalSalaryOverride)}">
+        <p class="field-hint">Leave blank to use an illustrative Police Scotland pay scale figure for the rank chosen above. Used to value the legacy (pre-2015) portion of the pension, which keeps a final-salary link even though accrual there froze.</p>
+      </div>
+      <div class="form-field">
+        <label class="field-label" for="pd-police-remedy-salary">Average salary during the 2015–2022 remedy period (optional)</label>
+        <input type="text" id="pd-police-remedy-salary" placeholder="e.g. £58,000 — leave blank to use the final salary above" value="${escapeAttr(draft.remedySalaryOverride)}">
+        <p class="field-hint">Used only to value the CARE side of the 2015–2022 "deferred choice underpin" comparison, since CARE pensionable pay in those years may differ from final salary at retirement.</p>
+      </div>
+    `;
+  }
+
+  const canAdd = isPensionDraftValid(draft);
+
+  return `
+    <p class="question-label" id="question-label">${personLabel(personIndex)} — pensions</p>
+    <p class="step-subtitle">Add each pension separately — mix workplace, personal, and already-in-payment pensions freely.</p>
+    <div class="pension-list">${listHtml}</div>
+    <div class="add-pension-form">
+      <div class="form-field">
+        <label class="field-label" for="pd-type">Pension type</label>
+        <select id="pd-type">
+          <option value="">Choose a type…</option>
+          <option value="dc" ${draft.type==='dc'?'selected':''}>Defined contribution (workplace or personal pot)</option>
+          <option value="db" ${draft.type==='db'?'selected':''}>Defined benefit (final salary / career average)</option>
+          <option value="inpayment" ${draft.type==='inpayment'?'selected':''}>Already in payment</option>
+          <option value="police" ${draft.type==='police'?'selected':''}>Police / public sector pension (years of service × rank)</option>
+        </select>
+      </div>
+      ${draftFieldsHtml}
+      <button class="btn btn-ghost add-pension-btn" ${canAdd ? '' : 'disabled'} type="button">Add this pension</button>
+    </div>
+  `;
+}
+
+function renderForecastStepStatePension(fd, personIndex){
+  const p = fd.people[personIndex] || makeEmptyPerson();
+  const estimatedSpa = estimateStatePensionAge(birthYearFromDOB(p.dateOfBirth));
+  return `
+    <p class="question-label" id="question-label">${personLabel(personIndex)} — State Pension</p>
+    <div class="form-field">
+      <label class="field-label" for="pf-ni-years">Qualifying National Insurance years so far</label>
+      <input type="text" id="pf-ni-years" placeholder="e.g. 22" value="${escapeAttr(p.niYearsSoFar)}">
+    </div>
+    <div class="form-field">
+      <label class="field-label" for="pf-ni-left">Years left paying NI before State Pension age</label>
+      <input type="text" id="pf-ni-left" placeholder="e.g. 12" value="${escapeAttr(p.yearsLeftWorking)}">
+    </div>
+    <div class="form-field">
+      <label class="field-label" for="pf-sp-known">Known State Pension forecast (optional, from GOV.UK)</label>
+      <input type="text" id="pf-sp-known" placeholder="e.g. £11,500 — leave blank to estimate" value="${escapeAttr(p.statePensionKnownAmount)}">
+    </div>
+    <div class="form-field">
+      <label class="field-label" for="pf-spa-override">State Pension age (optional)</label>
+      <input type="text" id="pf-spa-override" placeholder="${estimatedSpa ? 'Estimated: age ' + estimatedSpa : 'e.g. 67'}" value="${escapeAttr(p.statePensionAgeOverride)}">
+      <p class="field-hint">Leave blank to use an estimate from current UK State Pension age rules${estimatedSpa ? ' (age ' + estimatedSpa + ' for ' + personLabel(personIndex).toLowerCase() + ')' : ''} — check your exact date at GOV.UK.</p>
+    </div>
+  `;
+}
+
+function renderForecastStepSavings(fd){
+  const s = fd.savings || {};
+  return `
+    <p class="question-label" id="question-label">Savings and investments outside your pensions</p>
+    <p class="step-subtitle">ISAs, savings accounts, or other investments your household would draw on alongside pensions.</p>
+    <div class="form-field">
+      <label class="field-label" for="pf-savings-current">Current combined savings</label>
+      <input type="text" id="pf-savings-current" placeholder="e.g. £15,000 — leave blank for none" value="${escapeAttr(s.currentSavings)}">
+    </div>
+    <div class="form-field">
+      <label class="field-label" for="pf-savings-monthly">Monthly savings contribution</label>
+      <input type="text" id="pf-savings-monthly" placeholder="e.g. £200 — leave blank for none" value="${escapeAttr(s.monthlyContribution)}">
+    </div>
+  `;
+}
+
+function renderForecastStepIncomeNeed(fd){
+  return `
+    <p class="question-label" id="question-label">What annual income would you like in retirement?</p>
+    <p class="step-subtitle">In today's money, for your whole household, as a net (take-home, after-tax) figure — the forecast compares it against your projected pension and State Pension income after estimated Income Tax, not before. Not sure? Many people aim for roughly two-thirds of their pre-retirement take-home income.</p>
+    <div class="form-field">
+      <label class="field-label" for="pf-income-need">Annual household income needed</label>
+      <input type="text" id="pf-income-need" placeholder="e.g. £24,000" value="${escapeAttr(fd.annualRequiredIncome)}">
+    </div>
+  `;
+}
+
+function renderForecastScreen(){
+  const fd = state.forecastData;
+  const steps = getForecastSteps(fd);
+  const stepIdx = Math.min(state.forecastStepIndex, steps.length - 1);
+  const step = steps[stepIdx];
+
+  let bodyHtml = "";
+  if(step.id === "household") bodyHtml = renderForecastStepHousehold(fd);
+  else if(step.id === "person-basics") bodyHtml = renderForecastStepPersonBasics(fd, step.personIndex);
+  else if(step.id === "person-pensions") bodyHtml = renderForecastStepPensions(fd, step.personIndex, state.pensionDraft);
+  else if(step.id === "person-statepension") bodyHtml = renderForecastStepStatePension(fd, step.personIndex);
+  else if(step.id === "savings") bodyHtml = renderForecastStepSavings(fd);
+  else if(step.id === "income-need") bodyHtml = renderForecastStepIncomeNeed(fd);
+
+  const isLast = stepIdx === steps.length - 1;
+  const canContinue = canContinueForecastStep(step, fd);
+  const showWellbeing = detectKeywordSignal(state.answers, WELLBEING_KEYWORDS);
+  const showScam = detectKeywordSignal(state.answers, SCAM_KEYWORDS);
+
+  return `
+    ${renderHeader()}
+    <div class="card" tabindex="-1">
+      <div class="eyebrow-row">
+        <span class="module-name">Full pension forecast</span>
+        <span class="progress-text">Step ${stepIdx + 1} of ${steps.length}</span>
+      </div>
+      ${showScam ? renderScamBanner() : ""}
+      ${showWellbeing ? renderWellbeingBanner() : ""}
+      ${bodyHtml}
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="pf-back-btn">${stepIdx === 0 ? 'Back to waypoints' : 'Back'}</button>
+        <button class="btn btn-primary" id="pf-continue-btn" ${canContinue ? '' : 'disabled'}>${isLast ? 'Build my forecast' : 'Continue'}</button>
+      </div>
+    </div>
+  `;
+}
+
+function refreshForecastContinueButton(){
+  const steps = getForecastSteps(state.forecastData);
+  const stepIdx = Math.min(state.forecastStepIndex, steps.length - 1);
+  const step = steps[stepIdx];
+  const btn = document.getElementById('pf-continue-btn');
+  if(btn) btn.disabled = !canContinueForecastStep(step, state.forecastData);
+}
+
+function refreshAddPensionButton(){
+  const btn = document.querySelector('.add-pension-btn');
+  if(btn) btn.disabled = !isPensionDraftValid(state.pensionDraft);
+}
+
+function bindForecastText(id, setter){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('input', () => {
+    setter(el.value);
+    refreshForecastContinueButton();
+    refreshAddPensionButton();
+  });
+}
+
+function selectHouseholdType(type){
+  const people = state.forecastData.people.slice();
+  let nextPeople = people;
+  if(type === "Couple"){
+    if(people.length < 2) nextPeople = people.concat([makeEmptyPerson()]);
+  } else {
+    nextPeople = [people[0] || makeEmptyPerson()];
+  }
+  setState({ forecastData: Object.assign({}, state.forecastData, { householdType: type, people: nextPeople }) });
+}
+
+function attachForecastHandlers(){
+  const fd = state.forecastData;
+  const steps = getForecastSteps(fd);
+  const stepIdx = Math.min(state.forecastStepIndex, steps.length - 1);
+  const step = steps[stepIdx];
+
+  if(step.id === "household"){
+    document.querySelectorAll('[data-household]').forEach(btn => {
+      btn.addEventListener('click', () => selectHouseholdType(btn.dataset.household));
+    });
+  }
+
+  if(step.id === "person-basics"){
+    const p = fd.people[step.personIndex];
+    if(p){
+      const dobInput = document.getElementById('pf-dob');
+      if(dobInput){
+        dobInput.addEventListener('change', () => {
+          p.dateOfBirth = dobInput.value;
+          setState({});
+        });
+      }
+      bindForecastText('pf-retire', v => { p.targetRetirementAge = v; });
+    }
+  }
+
+  if(step.id === "person-pensions"){
+    const p = fd.people[step.personIndex];
+    const typeSelect = document.getElementById('pd-type');
+    if(typeSelect){
+      typeSelect.addEventListener('change', () => {
+        state.pensionDraft = Object.assign(makeEmptyPensionDraft(), { type: typeSelect.value });
+        setState({});
+      });
+    }
+    bindForecastText('pd-current-value', v => { state.pensionDraft.currentValue = v; });
+    bindForecastText('pd-monthly', v => { state.pensionDraft.monthlyContribution = v; });
+    const lumpSumCheckbox = document.getElementById('pd-take-lump-sum');
+    if(lumpSumCheckbox){
+      lumpSumCheckbox.addEventListener('change', () => {
+        state.pensionDraft.takeLumpSum = lumpSumCheckbox.checked;
+      });
+    }
+    bindForecastText('pd-annual-income', v => { state.pensionDraft.annualIncome = v; });
+    bindForecastText('pd-start-age', v => { state.pensionDraft.incomeStartAge = v; });
+    bindForecastText('pd-income-now', v => { state.pensionDraft.annualIncomeNow = v; });
+    bindForecastText('pd-police-join-year', v => { state.pensionDraft.policeJoinYear = v; });
+    bindForecastText('pd-police-salary', v => { state.pensionDraft.finalSalaryOverride = v; });
+    bindForecastText('pd-police-remedy-salary', v => { state.pensionDraft.remedySalaryOverride = v; });
+
+    const policeRankSelect = document.getElementById('pd-police-rank');
+    if(policeRankSelect){
+      policeRankSelect.addEventListener('change', () => {
+        state.pensionDraft.rank = policeRankSelect.value;
+        setState({});
+      });
+    }
+
+    const addBtn = document.querySelector('.add-pension-btn');
+    if(addBtn && p){
+      addBtn.addEventListener('click', () => {
+        if(!isPensionDraftValid(state.pensionDraft)) return;
+        const newPension = Object.assign(
+          { id: 'pen-' + Date.now() + '-' + Math.random().toString(36).slice(2,7) },
+          state.pensionDraft
+        );
+        p.pensions = (p.pensions || []).concat([newPension]);
+        state.pensionDraft = makeEmptyPensionDraft();
+        setState({});
+      });
+    }
+
+    document.querySelectorAll('[data-remove-pension]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(!p) return;
+        const idx = Number(btn.dataset.removePension);
+        p.pensions.splice(idx,1);
+        setState({});
+      });
+    });
+  }
+
+  if(step.id === "person-statepension"){
+    const p = fd.people[step.personIndex];
+    if(p){
+      bindForecastText('pf-ni-years', v => { p.niYearsSoFar = v; });
+      bindForecastText('pf-ni-left', v => { p.yearsLeftWorking = v; });
+      bindForecastText('pf-sp-known', v => { p.statePensionKnownAmount = v; });
+      bindForecastText('pf-spa-override', v => { p.statePensionAgeOverride = v; });
+    }
+  }
+
+  if(step.id === "savings"){
+    bindForecastText('pf-savings-current', v => { fd.savings.currentSavings = v; });
+    bindForecastText('pf-savings-monthly', v => { fd.savings.monthlyContribution = v; });
+  }
+
+  if(step.id === "income-need"){
+    bindForecastText('pf-income-need', v => { fd.annualRequiredIncome = v; });
+  }
+
+  const backBtn = document.getElementById('pf-back-btn');
+  if(backBtn){
+    backBtn.addEventListener('click', () => {
+      if(stepIdx === 0){
+        setState({ screen:"home" });
+      } else {
+        setState({ forecastStepIndex: stepIdx - 1 });
+      }
+    });
+  }
+
+  const continueBtn = document.getElementById('pf-continue-btn');
+  if(continueBtn){
+    continueBtn.addEventListener('click', () => {
+      const isLast = stepIdx === steps.length - 1;
+      if(isLast){
+        const result = computeHouseholdForecast(state.forecastData);
+        if(!result){
+          setState({
+            screen:"error",
+            module: MODULES.find(m => m.id === "forecast"),
+            errorText:"We need at least your age, target retirement age, and a target income figure to build a forecast — please check those answers."
+          });
+          return;
+        }
+        setState({ screen:"loading" });
+        fetchForecastAdvice(result);
+      } else {
+        setState({ forecastStepIndex: stepIdx + 1 });
+      }
+    });
+  }
+}
+
+function renderLoading(){
+  return `
+    ${renderHeader()}
+    <div class="card" tabindex="-1">
+      <div class="loading-wrap" role="status" aria-live="polite">
+        <div class="seal" aria-hidden="true">▲</div>
+        <p class="loading-text">Compiling your guidance on ${state.module.title.toLowerCase()}…</p>
+      </div>
+    </div>
+  `;
+}
+
+const VERDICT_ICONS = {
+  good: '<path d="M5 13l4 4L19 7"/>',
+  warn: '<path d="M12 4 3 19h18L12 4Z"/><path d="M12 10v4"/><circle cx="12" cy="16.6" r="0.6" fill="currentColor" stroke="none"/>',
+  bad: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2v.1"/>'
+};
+
+function renderForecastVerdict(c){
+  if(!c || c.kind !== 'household-forecast' || c.requiredIncome === null) return '';
+  let cls = 'verdict-good', icon = 'good', label = 'On track', text = '';
+  if(!c.bridgeGapExists){
+    text = `Your target income of ${formatGBP(c.requiredIncome)}/yr net (after tax) is projected to be met from age ${c.incomeNeedStartAge}.`;
+  } else if(c.bridgeFullyCoveredBySavings){
+    cls = 'verdict-warn'; icon = 'warn'; label = 'Gap, but bridged';
+    text = `There's a projected net income gap before every pension is fully in payment — but your savings, growing at an illustrative ${SAVINGS_GROWTH_RATE}%/yr, are projected to be enough to bridge it.`;
+  } else {
+    cls = 'verdict-bad'; icon = 'bad'; label = 'Shortfall projected';
+    text = `There's a projected net income shortfall of around ${formatGBP(c.firstUnmetShortfallAmount)}/yr from age ${c.firstUnmetShortfallAge} that your savings don't fully cover.`;
+  }
+  return `<div class="verdict-banner ${cls}">
+    <span class="verdict-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${VERDICT_ICONS[icon]}</svg></span>
+    <span class="verdict-text"><span class="verdict-label">${label}</span>${text}</span>
+  </div>`;
+}
+
+// A row of headline "stat tile" figures above the detailed breakdown — the
+// numbers someone would want at a glance: their net target, what they're
+// projected to actually have once everything is in payment, and the earliest
+// retirement age their own figures support (where a target was given).
+function renderForecastStatTiles(c){
+  if(!c || c.kind !== 'household-forecast') return '';
+  const tiles = [];
+
+  if(c.requiredIncome !== null){
+    tiles.push(`
+      <div class="stat-tile stat-accent">
+        <span class="stat-label">Net target</span>
+        <span class="stat-value">${formatGBP(c.requiredIncome)}</span>
+        <span class="stat-sub">per year, after tax</span>
+      </div>
+    `);
+  }
+
+  const steadyCls = (c.requiredIncome === null || c.steadyStateIncome >= c.requiredIncome - 0.5) ? 'stat-good' : 'stat-bad';
+  tiles.push(`
+    <div class="stat-tile ${steadyCls}">
+      <span class="stat-label">Steady-state income</span>
+      <span class="stat-value">${formatGBP(c.steadyStateIncome)}</span>
+      <span class="stat-sub">net, from age ${c.steadyStateAge}</span>
+    </div>
+  `);
+
+  if(c.requiredIncome !== null){
+    let gapCls = 'stat-good', gapLabel = 'No gap';
+    if(c.bridgeGapExists && c.bridgeFullyCoveredBySavings){ gapCls = 'stat-warn'; gapLabel = 'Bridged by savings'; }
+    else if(c.bridgeGapExists && !c.bridgeFullyCoveredBySavings){ gapCls = 'stat-bad'; gapLabel = `${formatGBP(c.firstUnmetShortfallAmount)}/yr short`; }
+    tiles.push(`
+      <div class="stat-tile ${gapCls}">
+        <span class="stat-label">Income gap check</span>
+        <span class="stat-value" style="font-size:18px;">${gapLabel}</span>
+        <span class="stat-sub">from age ${c.incomeNeedStartAge}</span>
+      </div>
+    `);
+  }
+
+  const achievableAges = (c.calculatedRetirementAges || []).filter(a => a && a.achievable === true);
+  if(achievableAges.length){
+    const ageText = achievableAges.length > 1
+      ? achievableAges.map((a,i) => `${personLabel(c.calculatedRetirementAges.indexOf(a))}: ${a.age}`).join(' · ')
+      : `Age ${achievableAges[0].age}`;
+    tiles.push(`
+      <div class="stat-tile">
+        <span class="stat-label">Earliest sustainable retirement</span>
+        <span class="stat-value" style="font-size:18px;">${ageText}</span>
+        <span class="stat-sub">calculated, meets net target</span>
+      </div>
+    `);
+  }
+
+  return `<div class="stat-grid">${tiles.join('')}</div>`;
+}
+
+function renderCalcPanel(){
+  const c = state.calcResults;
+  if(!c) return "";
+
+  let rows = "";
+  let footnote = "";
+
+  if(c.kind === "tax-relief"){
+    rows += `<div class="calc-row"><span class="calc-label">Estimated tax band</span><span class="calc-value">${c.bandName} (${c.bandRate}%)</span></div>`;
+    if(c.method === "netpay"){
+      rows += `<div class="calc-row"><span class="calc-label">Contribution</span><span class="calc-value">${formatGBP(c.netContribution)}/yr</span></div>`;
+      rows += `<div class="calc-row"><span class="calc-label">Relief already applied</span><span class="calc-value">Full relief at ${c.bandRate}%, automatically</span></div>`;
+    } else {
+      rows += `<div class="calc-row"><span class="calc-label">You pay in</span><span class="calc-value">${formatGBP(c.netContribution)}/yr</span></div>`;
+      rows += `<div class="calc-row"><span class="calc-label">Grossed-up contribution</span><span class="calc-value">${formatGBP(c.grossContribution)}/yr</span></div>`;
+      rows += `<div class="calc-row"><span class="calc-label">Basic-rate relief added at source</span><span class="calc-value">${formatGBP(c.basicReliefAdded)}/yr</span></div>`;
+      rows += `<div class="calc-row"><span class="calc-label">Extra relief you may need to claim</span><span class="calc-value">${formatGBP(c.extraReliefClaimable)}/yr</span></div>`;
+    }
+    footnote = `Based on illustrative ${c.isRUK ? "rest-of-UK" : "Scottish"} income tax bands for a recent tax year — bands change every April, so confirm current thresholds at gov.uk or gov.scot.`;
+    if(c.taperNote) footnote += " Income between £100,000 and £125,140 also sits in the personal allowance taper zone, which your guidance below explains.";
+  }
+
+  if(c.kind === "pot-projection"){
+    c.results.forEach(r => {
+      rows += `<div class="calc-row"><span class="calc-label">${r.label} growth (${r.rate}%/yr)</span><span class="calc-value">${formatGBP(r.value)}</span></div>`;
+    });
+    rows += `<div class="calc-row"><span class="calc-label">Estimated tax-free lump sum (25%)</span><span class="calc-value">${formatGBP(c.lumpSumEstimate)}</span></div>`;
+    footnote = `Illustrative only, over ${c.years} years — not a forecast or guarantee. The lump sum is capped against a current illustrative allowance of ${formatGBP(PENSION_LUMP_SUM_ALLOWANCE)}, which can change.`;
+  }
+
+  if(c.kind === "ni-years"){
+    rows += `<div class="calc-row"><span class="calc-label">Qualifying years so far</span><span class="calc-value">${c.soFar}</span></div>`;
+    rows += `<div class="calc-row"><span class="calc-label">Expected years still to add</span><span class="calc-value">${c.left}</span></div>`;
+    rows += `<div class="calc-row"><span class="calc-label">Projected total qualifying years</span><span class="calc-value">${c.projected} (of a typical 35 needed for the full rate)</span></div>`;
+    footnote = `A minimum of around 10 qualifying years is usually needed for any new State Pension at all. Get your exact personalised forecast at GOV.UK's "Check your State Pension forecast" service.`;
+  }
+
+  if(c.kind === "household-forecast"){
+    rows += `<div class="calc-section-label">Household</div>`;
+    rows += `<div class="calc-row"><span class="calc-label">Household type</span><span class="calc-value">${c.householdType} (${c.numPeople} ${c.numPeople===1?'person':'people'})</span></div>`;
+
+    c.personResults.forEach((pr, idx) => {
+      rows += `<div class="calc-section-label">${personLabel(idx)}'s pensions (gross, before tax)</div>`;
+      if(!pr.pensionInfo.pensions.length){
+        rows += `<div class="calc-row"><span class="calc-label">Pensions</span><span class="calc-value">None added</span></div>`;
+      } else {
+        pr.pensionInfo.pensions.forEach(pen => {
+          let label, val;
+          if(pen.type === 'dc'){
+            label = 'Defined contribution';
+            val = `${formatGBP(pen.potAtRetirement)} pot${pen.lumpSum>0.5 ? ' → ' + formatGBP(pen.lumpSum) + ' lump sum + ' + formatGBP(pen.annualIncome) + '/yr' : ' → ' + formatGBP(pen.annualIncome) + '/yr (no lump sum taken)'} from age ${pen.incomeStartAge}`;
+          } else if(pen.type === 'police'){
+            const schemeMix = pen.hybrid ? 'legacy 2006 + 2015 CARE' : (pen.legacyYears > 0 ? '2006 scheme' : '2015 CARE scheme');
+            label = `Police pension (${schemeMix}, ${pen.rank})`;
+            val = `${formatGBP(pen.annualIncome)}/yr from age ${pen.incomeStartAge}${pen.lumpSum>0.5 ? ' + ' + formatGBP(pen.lumpSum) + ' lump sum' : ''}${pen.isDeferred ? ' (deferred)' : ''}`;
+          } else {
+            label = pen.type==='db' ? 'Defined benefit' : 'Already in payment';
+            val = `${formatGBP(pen.annualIncome)}/yr from age ${pen.incomeStartAge}`;
+          }
+          rows += `<div class="calc-row"><span class="calc-label">${label}</span><span class="calc-value">${val}</span></div>`;
+          if(pen.type === 'police' && pen.hybrid){
+            rows += `<div class="calc-row"><span class="calc-label">— legacy portion (${pen.legacyYears.toFixed(1)} yrs)</span><span class="calc-value">${formatGBP(pen.legacyPension)}/yr</span></div>`;
+            rows += `<div class="calc-row"><span class="calc-label">— 2015 CARE portion (${pen.careYears.toFixed(1)} yrs)</span><span class="calc-value">${formatGBP(pen.carePension)}/yr</span></div>`;
+          }
+        });
+      }
+      rows += `<div class="calc-row"><span class="calc-label">State Pension</span><span class="calc-value">${formatGBP(pr.spInfo.amount)}/yr from age ${pr.spInfo.spa === null ? '—' : pr.spInfo.spa}</span></div>`;
+    });
+
+    rows += `<div class="calc-section-label">Savings</div>`;
+    rows += `<div class="calc-row"><span class="calc-label">Projected balance at age ${c.incomeNeedStartAge}</span><span class="calc-value">${formatGBP(c.savingsProjection.balanceAtStart)}</span></div>`;
+
+    rows += `<div class="calc-section-label">Income vs. target (net, after tax)</div>`;
+    if(c.requiredIncome !== null) rows += `<div class="calc-row"><span class="calc-label">Target household income (net)</span><span class="calc-value">${formatGBP(c.requiredIncome)}/yr</span></div>`;
+    c.phases.forEach(ph => {
+      const shortfallNote = (c.requiredIncome !== null && ph.shortfall > 0.5) ? ` (shortfall ${formatGBP(ph.shortfall)})` : '';
+      const savingsNote = (ph.savingsUsed > 0.5) ? ` — ${formatGBP(ph.savingsUsed)}/yr drawn from savings` : '';
+      rows += `<div class="calc-row"><span class="calc-label">From age ${ph.startAge}</span><span class="calc-value">${formatGBP(ph.totalIncome)}/yr net${shortfallNote}${savingsNote}<br><span class="calc-subvalue">${formatGBP(ph.grossIncome)}/yr before tax − ${formatGBP(ph.taxDue)}/yr est. Income Tax</span></span></div>`;
+    });
+    rows += `<div class="calc-row calc-total"><span class="calc-label">Steady state from age ${c.steadyStateAge}</span><span class="calc-value">${formatGBP(c.steadyStateIncome)}/yr net<br><span class="calc-subvalue">${formatGBP(c.steadyStateGrossIncome)}/yr before tax − ${formatGBP(c.steadyStateTax)}/yr est. Income Tax</span></span></div>`;
+
+    if(c.requiredIncome !== null){
+      let gapNote;
+      if(!c.bridgeGapExists){
+        gapNote = "No income gap — pensions, State Pension and savings meet the target throughout.";
+      } else if(c.bridgeFullyCoveredBySavings){
+        gapNote = "There's a gap before every income source is in payment, but savings are projected to bridge it in full.";
+      } else {
+        gapNote = `Savings do NOT fully bridge the gap — a shortfall of around ${formatGBP(c.firstUnmetShortfallAmount)}/yr is projected from age ${c.firstUnmetShortfallAge}, once savings run out.`;
+      }
+      rows += `<div class="calc-row calc-total"><span class="calc-label">Savings-bridged gap check</span><span class="calc-value">${gapNote}</span></div>`;
+
+      rows += `<div class="calc-section-label">Calculated retirement age</div>`;
+      (c.calculatedRetirementAges || []).forEach((calc, idx) => {
+        let val;
+        if(!calc || calc.achievable === null){
+          val = "Not enough information to calculate";
+        } else if(calc.achievable === true){
+          val = `Age ${calc.age} — the earliest age income sustainably meets the ${formatGBP(c.requiredIncome)}/yr target`;
+        } else {
+          val = `Not achievable by age ${RETIREMENT_AGE_SEARCH_CAP} on current figures — the target income isn't projected to be sustainably met at any retirement age tried`;
+        }
+        rows += `<div class="calc-row"><span class="calc-label">${personLabel(idx)}</span><span class="calc-value">${val}</span></div>`;
+      });
+    }
+
+    footnote = `Each pension figure above is shown gross (before tax) — what that pension itself pays out. The "Income vs. target" figures below are different: they're net, after deducting estimated Scottish Income Tax on each person's own combined taxable income (their pensions plus their own State Pension, once each is in payment, taxed per person as HMRC and Revenue Scotland actually do it — not simply as a flat rate on the household total), including the £100,000–£125,140 personal allowance taper where relevant. Tax-free elements — a 25% pension lump sum, and money drawn from savings — are never taxed again. Uses recognised but illustrative assumptions: ${GROWTH_SCENARIOS[1].rate}% pension growth, the ${SUSTAINABLE_WITHDRAWAL_RATE}% drawdown rule, ${SAVINGS_GROWTH_RATE}% savings growth, current tax-year Scottish Income Tax bands, and State Pension ages estimated from current UK legislation (defined benefit figures use what you entered directly). None of this is a guarantee — check your own scheme paperwork and your GOV.UK State Pension forecast for exact figures.`;
+
+    const hasPoliceLegacy = c.personResults.some(pr => (pr.pensionInfo.pensions||[]).some(pen => pen.type==='police' && pen.legacyYears > 0));
+    const hasPoliceCare = c.personResults.some(pr => (pr.pensionInfo.pensions||[]).some(pen => pen.type==='police' && pen.careYears > 0));
+    if(hasPoliceLegacy || hasPoliceCare){
+      footnote += ` Police pension figures correctly reflect the McCloud remedy: service before 1 April 2015 accrues under the legacy scheme (1/70th per year, capped at 35 years, with an automatic 4× lump sum, and the final-salary link preserved through to actual retirement); service from 1 April 2015 to 31 March 2022 ("remedy period") is valued under a deferred choice underpin — whichever of legacy or 2015 CARE treatment gives the larger benefit for those years — and service from 1 April 2022 onward is mandatory 2015 CARE accrual (1/55.3 of pensionable pay each year, normal pension age 60, reduced by roughly 5% per year if drawn between 55 and 60). All figures use illustrative Police Scotland rank pay scales rather than actual pensionable pay, and the optional £12-for-£1 CARE lump-sum commutation isn't modelled. Get an official Remediable Service Statement and pension estimate from SPPA (pensions.gov.scot) for exact figures.`;
+    }
+  }
+
+  if(!rows) return "";
+
+  return `
+    <div class="calc-panel">
+      <h4>Your numbers</h4>
+      ${rows}
+      <p class="calc-footnote">${footnote}</p>
+    </div>
+  `;
+}
+
+function renderForecastRecapGroup(fd){
+  const rows = [];
+  rows.push(`<div class="recap-row"><span class="recap-label">Household type</span><span class="recap-value">${escapeHtml(fd.householdType||'—')}</span></div>`);
+  fd.people.forEach((p,idx) => {
+    const derivedAge = ageFromDOB(p.dateOfBirth);
+    rows.push(`<div class="recap-row"><span class="recap-label">${personLabel(idx)} — date of birth / target retirement</span><span class="recap-value">${escapeHtml(p.dateOfBirth||'—')}${derivedAge!==null ? ' (age '+derivedAge+')' : ''} / ${escapeHtml(p.targetRetirementAge||'—')}</span></div>`);
+    (p.pensions||[]).forEach(pen => {
+      const label = pen.type==='dc' ? 'DC pension' : pen.type==='db' ? 'DB pension' : pen.type==='police' ? 'Police/public sector pension' : 'In-payment pension';
+      let value;
+      if(pen.type==='dc') value = pen.currentValue||'—';
+      else if(pen.type==='db') value = pen.annualIncome||'—';
+      else if(pen.type==='police') value = `${pen.rank||'—'}, joined ${pen.policeJoinYear||'—'}`;
+      else value = pen.annualIncomeNow||'—';
+      rows.push(`<div class="recap-row"><span class="recap-label">${personLabel(idx)} — ${label}</span><span class="recap-value">${escapeHtml(value)}</span></div>`);
+    });
+    rows.push(`<div class="recap-row"><span class="recap-label">${personLabel(idx)} — NI years so far</span><span class="recap-value">${escapeHtml(p.niYearsSoFar||'—')}</span></div>`);
+  });
+  rows.push(`<div class="recap-row"><span class="recap-label">Savings now / monthly</span><span class="recap-value">${escapeHtml(fd.savings.currentSavings||'—')} / ${escapeHtml(fd.savings.monthlyContribution||'—')}</span></div>`);
+  rows.push(`<div class="recap-row"><span class="recap-label">Target annual income</span><span class="recap-value">${escapeHtml(fd.annualRequiredIncome||'—')}</span></div>`);
+  return `<div class="recap-group"><h5>Full pension forecast (household)</h5>${rows.join('')}</div>`;
+}
+
+function renderFullRecap(profile, fd){
+  const forecastGroup = fd ? renderForecastRecapGroup(fd) : '';
+  const groups = MODULES.map(mod => {
+    const rowsHtml = mod.questions
+      .filter(q => profile[q.id] && String(profile[q.id]).trim().length > 0)
+      .map(q => `<div class="recap-row"><span class="recap-label">${escapeHtml(q.label)}</span><span class="recap-value">${escapeHtml(profile[q.id])}</span></div>`)
+      .join("");
+    if(!rowsHtml) return "";
+    return `<div class="recap-group"><h5>${escapeHtml(mod.title)}</h5>${rowsHtml}</div>`;
+  }).join("");
+
+  const combined = forecastGroup + groups;
+  if(!combined) return "";
+
+  return `
+    <details class="recap">
+      <summary>Full recap of everything you've told CAS</summary>
+      ${combined}
+    </details>
+  `;
+}
+
+function renderAdvice(){
+  const isForecast = state.calcResults && state.calcResults.kind === "household-forecast";
+  return `
+    ${renderHeader()}
+    <div class="card" tabindex="-1">
+      <div class="eyebrow-row">
+        <span class="module-name">${state.module.title}</span>
+        <span class="progress-text">Your guidance</span>
+      </div>
+      ${state.scamFlag ? renderScamBanner() : ""}
+      ${state.wellbeingFlag ? renderWellbeingBanner() : ""}
+      ${state.usedLocalFallback ? `<div class="fallback-banner">Written using CAS's built-in explanations rather than the online guidance service, which wasn't reachable from here (this happens when the app is hosted outside Claude.ai — the figures below are unaffected and calculated the same way either way).</div>` : ""}
+      ${isForecast ? renderForecastVerdict(state.calcResults) : ""}
+      ${isForecast ? renderForecastStatTiles(state.calcResults) : ""}
+      ${renderCalcPanel()}
+      <div class="advice">${state.adviceHtml}</div>
+      ${isForecast ? renderFullRecap(state.answers, state.forecastData) : ""}
+      <p class="resource-line">Ready to talk specifics? Read about <a href="https://www.pensionwise.gov.uk" target="_blank" rel="noopener">Pension Wise appointments</a>, or check a firm's authorisation on the <a href="https://register.fca.org.uk/s/" target="_blank" rel="noopener">FCA Register</a>.</p>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="home-btn">Back to waypoints</button>
+        <button class="btn btn-primary" id="restart-btn">Redo this module</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderError(){
+  return `
+    ${renderHeader()}
+    <div class="card" tabindex="-1">
+      <div class="eyebrow-row">
+        <span class="module-name">${state.module.title}</span>
+        <span class="progress-text">Something went wrong</span>
+      </div>
+      <p class="error-text" role="alert">${escapeHtml(state.errorText)}</p>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="home-btn">Back to waypoints</button>
+        <button class="btn btn-primary" id="retry-btn">Try again</button>
+      </div>
+    </div>
+  `;
+}
+
+function render(){
+  const app = document.getElementById('app');
+  let html = "";
+  if(state.screen === "home") html = renderHome();
+  else if(state.screen === "question") html = renderQuestion();
+  else if(state.screen === "forecast") html = renderForecastScreen();
+  else if(state.screen === "loading") html = renderLoading();
+  else if(state.screen === "advice") html = renderAdvice();
+  else if(state.screen === "error") html = renderError();
+  app.innerHTML = html;
+  attachHandlers();
+
+  if(state.screen !== "home"){
+    const card = app.querySelector('.card');
+    if(card) card.focus();
+  }
+}
+
+function attachHandlers(){
+  if(state.screen === "home"){
+    document.querySelectorAll('[data-module]').forEach(row => {
+      row.addEventListener('click', () => {
+        const mod = MODULES.find(m => m.id === row.dataset.module);
+        if(mod.id === "forecast"){
+          setState({ screen:"forecast", module:mod, forecastStepIndex:0, pensionDraft: makeEmptyPensionDraft(), calcResults:null, wellbeingFlag:false, scamFlag:false });
+        } else {
+          setState({ screen:"question", module:mod, qIndex:0, calcResults:null, wellbeingFlag:false, scamFlag:false });
+        }
+      });
+    });
+    const resetBtn = document.getElementById('reset-all-btn');
+    if(resetBtn) resetBtn.addEventListener('click', () => {
+      setState({
+        answers:{}, forecastData: makeEmptyForecastData(), forecastStepIndex:0, pensionDraft: makeEmptyPensionDraft(),
+        calcResults:null, wellbeingFlag:false, scamFlag:false
+      });
+    });
+  }
+
+  if(state.screen === "question"){
+    const q = state.module.questions[state.qIndex];
+
+    if(q.type === "select"){
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const answers = Object.assign({}, state.answers, { [q.id]: btn.dataset.option });
+          setState({ answers });
+        });
+      });
+    } else {
+      const input = document.getElementById('text-input');
+      input.addEventListener('input', () => {
+        state.answers[q.id] = input.value;
+        const btn = document.getElementById('continue-btn');
+        if(btn) btn.disabled = false;
+      });
+    }
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      if(state.qIndex === 0){
+        setState({ screen:"home" });
+      } else {
+        setState({ qIndex: state.qIndex - 1 });
+      }
+    });
+
+    document.getElementById('continue-btn').addEventListener('click', () => {
+      const isLast = state.qIndex === state.module.questions.length - 1;
+      if(isLast){
+        setState({ screen:"loading" });
+        fetchAdvice();
+      } else {
+        setState({ qIndex: state.qIndex + 1 });
+      }
+    });
+  }
+
+  if(state.screen === "forecast"){
+    attachForecastHandlers();
+  }
+
+  if(state.screen === "advice" || state.screen === "error"){
+    const homeBtn = document.getElementById('home-btn');
+    if(homeBtn) homeBtn.addEventListener('click', () => setState({ screen:"home" }));
+
+    const restartBtn = document.getElementById('restart-btn');
+    if(restartBtn) restartBtn.addEventListener('click', () => {
+      if(state.module && state.module.id === "forecast"){
+        setState({ screen:"forecast", forecastStepIndex:0, pensionDraft: makeEmptyPensionDraft(), calcResults:null, wellbeingFlag:false, scamFlag:false });
+      } else {
+        setState({ screen:"question", qIndex:0, calcResults:null, wellbeingFlag:false, scamFlag:false });
+      }
+    });
+
+    const retryBtn = document.getElementById('retry-btn');
+    if(retryBtn) retryBtn.addEventListener('click', () => {
+      if(state.module && state.module.id === "forecast"){
+        const result = computeHouseholdForecast(state.forecastData);
+        if(!result){
+          setState({ screen:"forecast", forecastStepIndex:0 });
+          return;
+        }
+        setState({ screen:"loading" });
+        fetchForecastAdvice(result);
+      } else {
+        setState({ screen:"loading" });
+        fetchAdvice();
+      }
+    });
+  }
+}
+
+function simpleMarkdownToHtml(text){
+  const lines = text.split("\n");
+  let html = "";
+  let inList = false;
+
+  function closeList(){
+    if(inList){ html += "</ul>"; inList = false; }
+  }
+
+  lines.forEach(rawLine => {
+    const line = rawLine.trim();
+    if(line === ""){ closeList(); return; }
+
+    if(line.startsWith("## ")){
+      closeList();
+      html += `<h2>${inlineFormat(line.slice(3))}</h2>`;
+    } else if(line.startsWith("- ")){
+      if(!inList){ html += "<ul>"; inList = true; }
+      html += `<li>${inlineFormat(line.slice(2))}</li>`;
+    } else {
+      closeList();
+      html += `<p>${inlineFormat(line)}</p>`;
+    }
+  });
+  closeList();
+  return html;
+}
+
+function inlineFormat(str){
+  return escapeHtml(str)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+// Reads the response body as text first, then tries to parse it as JSON.
+// Never throws — callers get { json, raw }, with json === null if parsing failed.
+async function readBodySafely(response){
+  const raw = await response.text();
+  try{
+    return { json: raw ? JSON.parse(raw) : null, raw };
+  } catch(parseErr){
+    return { json: null, raw };
+  }
+}
+
+// Pulls a human-readable message out of an Anthropic-style error body
+// ({ error: { type, message } }), falling back to the raw text.
+function extractErrorMessage(status, body){
+  if(body.json && body.json.error && body.json.error.message){
+    return `${body.json.error.message} (status ${status})`;
+  }
+  const snippet = (body.raw || "").slice(0, 200);
+  return snippet
+    ? `Server returned status ${status}: ${snippet}`
+    : `Server returned status ${status} with no message body.`;
+}
+
+function computeCalcResults(moduleId, answers){
+  if(moduleId === "tax-relief") return computeTaxRelief(answers);
+  if(moduleId === "pot-projection") return computePotProjection(answers);
+  if(moduleId === "state-pension") return computeNIYears(answers);
+  return null;
+}
+
+function calcResultsToFactLines(calcResults){
+  if(!calcResults) return [];
+  const lines = [];
+
+  if(calcResults.kind === "tax-relief"){
+    lines.push(`CALCULATED — estimated marginal tax band: ${calcResults.bandName} (${calcResults.bandRate}%), based on ${calcResults.isRUK ? "rest-of-UK" : "Scottish"} bands`);
+    if(calcResults.method === "netpay"){
+      lines.push(`CALCULATED — contribution method is net pay or salary sacrifice, so full relief at ${calcResults.bandRate}% is already applied automatically`);
+    } else {
+      lines.push(`CALCULATED — net contribution paid: ${formatGBP(calcResults.netContribution)}/yr, grossed-up contribution: ${formatGBP(calcResults.grossContribution)}/yr`);
+      lines.push(`CALCULATED — basic-rate relief added at source: ${formatGBP(calcResults.basicReliefAdded)}/yr`);
+      lines.push(`CALCULATED — additional relief potentially reclaimable via Self Assessment: ${formatGBP(calcResults.extraReliefClaimable)}/yr`);
+      if(calcResults.starterBonus) lines.push("CALCULATED — this person is a Scottish starter-rate (19%) taxpayer, so they keep the full 20% relief at source with no clawback");
+    }
+    if(calcResults.taperNote) lines.push("CALCULATED — income falls within the £100,000–£125,140 personal allowance taper zone");
+  }
+
+  if(calcResults.kind === "pot-projection"){
+    calcResults.results.forEach(r => {
+      lines.push(`CALCULATED — ${r.label} scenario (${r.rate}%/yr growth) over ${calcResults.years} years: ${formatGBP(r.value)}`);
+    });
+    lines.push(`CALCULATED — estimated 25% tax-free lump sum (capped at illustrative allowance): ${formatGBP(calcResults.lumpSumEstimate)}`);
+  }
+
+  if(calcResults.kind === "ni-years"){
+    lines.push(`CALCULATED — qualifying NI years so far: ${calcResults.soFar}, expected further years: ${calcResults.left}, projected total: ${calcResults.projected} (capped reference of 35 for full rate)`);
+  }
+
+  if(calcResults.kind === "household-forecast"){
+    lines.push(`CALCULATED — household type: ${calcResults.householdType} (${calcResults.numPeople} ${calcResults.numPeople===1?'person':'people'})`);
+    calcResults.personResults.forEach((pr, idx) => {
+      const who = personLabel(idx);
+      lines.push(`CALCULATED — ${who}: current age ${pr.currentAge === null ? 'not given' : pr.currentAge}, target retirement age ${pr.retireAge === null ? 'not given' : pr.retireAge}`);
+      (pr.pensionInfo.pensions||[]).forEach(pen => {
+        if(pen.type === "dc") lines.push(`CALCULATED — ${who}'s defined contribution pension: projected pot ${formatGBP(pen.potAtRetirement)} at retirement${pen.lumpSum>0.5 ? `, taking a 25% tax-free lump sum of ${formatGBP(pen.lumpSum)}` : ', not taking a tax-free lump sum (full pot left invested for income)'}, illustrative drawdown income ${formatGBP(pen.annualIncome)}/yr GROSS (before tax) from age ${pen.incomeStartAge}`);
+        if(pen.type === "db") lines.push(`CALCULATED — ${who}'s defined benefit pension: ${formatGBP(pen.annualIncome)}/yr GROSS (before tax) from age ${pen.incomeStartAge}`);
+        if(pen.type === "inpayment") lines.push(`CALCULATED — ${who}'s pension already in payment: ${formatGBP(pen.annualIncome)}/yr GROSS (before tax), ongoing`);
+        if(pen.type === "police"){
+          const breakdown = pen.hybrid
+            ? `legacy 2006 scheme for ${pen.legacyYears.toFixed(1)} years (${formatGBP(pen.legacyPension)}/yr) plus 2015 CARE for ${pen.careYears.toFixed(1)} years (${formatGBP(pen.carePension)}/yr${pen.careReductionFactor < 1 ? ', reduced for early payment' : ''})`
+            : (pen.legacyYears > 0
+                ? `legacy 2006 final-salary scheme only, ${pen.legacyYears.toFixed(1)} qualifying years`
+                : `2015 CARE scheme only, ${pen.careYears.toFixed(1)} qualifying years${pen.careReductionFactor < 1 ? ', reduced for early payment before age 60' : ''}`);
+          lines.push(`CALCULATED — ${who}'s Police Scotland pension (McCloud remedy applied: ${breakdown}, rank ${pen.rank}): ${formatGBP(pen.annualIncome)}/yr GROSS (before tax) total from age ${pen.incomeStartAge}${pen.lumpSum>0.5 ? ', plus an automatic lump sum of ' + formatGBP(pen.lumpSum) + ' from the legacy portion' : ''}${pen.isDeferred ? ' — this is a deferred pension since the given retirement age is before the earliest normal pension age of 55' : ''}`);
+        }
+      });
+      if(!pr.pensionInfo.pensions.length) lines.push(`CALCULATED — ${who} has no private pensions on record`);
+      lines.push(`CALCULATED — ${who}'s State Pension: ${formatGBP(pr.spInfo.amount)}/yr GROSS (before tax) from age ${pr.spInfo.spa === null ? 'not estimable' : pr.spInfo.spa} (${pr.spInfo.source === 'known' ? "their own checked GOV.UK forecast" : "estimated from qualifying NI years"})`);
+    });
+    lines.push(`CALCULATED — household savings: ${formatGBP(calcResults.savingsProjection.current)} now, ${formatGBP(calcResults.savingsProjection.monthly)}/mo contribution, projected to grow to ${formatGBP(calcResults.savingsProjection.balanceAtStart)} by age ${calcResults.incomeNeedStartAge}`);
+    lines.push(`CALCULATED — target annual household income: ${calcResults.requiredIncome !== null ? formatGBP(calcResults.requiredIncome) + '/yr NET (this is what the person said they want to have to spend, after tax)' : 'not given'}`);
+    lines.push(`CALCULATED — income need begins at age ${calcResults.incomeNeedStartAge} (the earliest target retirement age in the household)`);
+    lines.push(`CALCULATED — once every pension and State Pension is in payment (from age ${calcResults.steadyStateAge}), total household income is projected to be ${formatGBP(calcResults.steadyStateIncome)}/yr NET, after an estimated ${formatGBP(calcResults.steadyStateTax)}/yr of Income Tax is deducted from ${formatGBP(calcResults.steadyStateGrossIncome)}/yr gross`);
+    if(calcResults.requiredIncome !== null){
+      if(!calcResults.bridgeGapExists){
+        lines.push(`CALCULATED — no projected income gap: household NET income is projected to meet the ${formatGBP(calcResults.requiredIncome)}/yr NET target from age ${calcResults.incomeNeedStartAge} onward`);
+      } else if(calcResults.bridgeFullyCoveredBySavings){
+        lines.push(`CALCULATED — there is a projected NET income gap before all pensions/State Pension are in payment, but savings are projected to be sufficient to bridge it in full`);
+      } else {
+        lines.push(`CALCULATED — there is a projected NET income shortfall that savings do NOT fully cover: the first uncovered shortfall is projected at around ${formatGBP(calcResults.firstUnmetShortfallAmount)}/yr from age ${calcResults.firstUnmetShortfallAge}`);
+      }
+      (calcResults.calculatedRetirementAges || []).forEach((calc, idx) => {
+        const who = personLabel(idx);
+        if(calc && calc.achievable === true){
+          lines.push(`CALCULATED — ${who}'s earliest sustainable retirement age, given the ${formatGBP(calcResults.requiredIncome)}/yr NET household target and everything else held as stated: age ${calc.age} (this is a calculated figure, separate from and not necessarily the same as the target retirement age ${who.toLowerCase()} entered)`);
+        } else if(calc && calc.achievable === false){
+          lines.push(`CALCULATED — ${who}'s target income does not appear achievable at any retirement age up to ${RETIREMENT_AGE_SEARCH_CAP} with the pensions, savings and State Pension figures given`);
+        }
+      });
+    }
+    lines.push(`CALCULATED — every pension and State Pension figure listed above by name is GROSS (before tax); every figure in the phase-by-phase income timeline below, and the target/steady-state/shortfall figures, is NET (after deducting estimated Scottish Income Tax, worked out per person on their own combined taxable income, including the £100,000–£125,140 personal allowance taper where relevant). A 25% pension lump sum and money drawn from savings are tax-free and are not reduced further.`);
+    calcResults.phases.forEach(ph => {
+      const shortfallText = calcResults.requiredIncome !== null
+        ? (ph.shortfall > 0.5 ? `shortfall of ${formatGBP(ph.shortfall)}/yr` + (ph.savingsUsed > 0.5 ? ` (using ${formatGBP(ph.savingsUsed)}/yr of savings)` : '') : 'target met')
+        : '';
+      lines.push(`CALCULATED — from age ${ph.startAge}: total household income ${formatGBP(ph.totalIncome)}/yr NET (${formatGBP(ph.grossIncome)}/yr gross, ${formatGBP(ph.taxDue)}/yr est. Income Tax)${shortfallText ? ', ' + shortfallText : ''}`);
+    });
+  }
+
+  return lines;
+}
+
+// Gathers any answers the person has already given in OTHER modules, so guidance in
+// one area can be informed by what they told CAS elsewhere, without repeating a
+// field that this module already asks about itself.
+function buildOtherContextLines(currentModule, profile){
+  const ownIds = new Set(currentModule.questions.map(q => q.id));
+  const seen = new Set();
+  const lines = [];
+
+  MODULES.forEach(mod => {
+    if(mod.id === currentModule.id) return;
+    mod.questions.forEach(q => {
+      if(ownIds.has(q.id) || seen.has(q.id)) return;
+      const val = profile[q.id];
+      if(val && String(val).trim().length > 0){
+        lines.push(`OTHER CONTEXT — ${q.label} — ${val}`);
+        seen.add(q.id);
+      }
+    });
+  });
+
+  return lines;
+}
+
+// ============================================================================
+// Built-in (offline) guidance generator — a deterministic, rule-based fallback
+// used whenever the AI guidance service can't be reached (e.g. running from a
+// plain static host like GitHub Pages, where the app has no API key). It never
+// calls out to the network. It reuses the same CALCULATED/OTHER CONTEXT fact
+// lines the AI would have received, and produces a plain-English summary from
+// fixed templates instead of generated prose — less naturally-written, but
+// fully self-contained and always available.
+// ============================================================================
+
+function factLineToBullet(line){
+  return line.replace(/^CALCULATED — /, "").replace(/^OTHER CONTEXT — /, "").trim();
+}
+
+const LOCAL_MODULE_EXPLAINERS = {
+  "forecast": "This forecast combines every pension you've added (of whichever type), each person's State Pension from their own State Pension age, and any savings being used to bridge a gap before all income is flowing — against the annual household income you said you'd like. Each individual pension figure in 'Your numbers' above is shown gross, before tax — what that pension itself pays out. The income-vs-target figures are different: they're net, after deducting estimated Scottish Income Tax on each person's own combined taxable income (worked out per person, the way HMRC and Revenue Scotland actually do it), so they're directly comparable to the take-home target you entered. Figures for defined contribution pots assume balanced (5%/yr) growth, a 25% tax-free lump sum unless you chose to skip it (which stays tax-free either way), and the commonly-cited 4% sustainable drawdown rule. A Police Scotland pension, where present, is worked out across its three legal periods: pre-2015 service under the legacy final-salary scheme, 2015–2022 service resolved by the McCloud 'deferred choice underpin', and service from April 2022 under the mandatory 2015 CARE scheme — exact figures, especially the deferred choice underpin outcome, should be confirmed with SPPA via an official Remediable Service Statement. A calculated retirement age, where shown, is the earliest age your own figures suggest the net target income is sustainably met — a separate, calculated figure from whatever retirement age you actually entered.",
+  "fact-find": "A pension adviser typically starts by understanding your whole circumstances — your age relative to when you'd like to retire, your employment status, and anything about your health that might affect either how long your money needs to last or the value of guaranteed income options (a shorter life expectancy can sometimes make an annuity less attractive than drawdown, for instance). Your marital status and existing pensions shape what else is worth reviewing: multiple old workplace pensions are often worth tracking down and consolidating (or at least listing) so nothing gets forgotten, and a spouse or civil partner's own pension position usually needs to be considered alongside yours rather than in isolation.",
+  "tax-relief": "Scottish taxpayers get pension tax relief slightly differently from the rest of the UK, because Scotland has its own income tax bands. If your contributions go through a 'net pay' or salary sacrifice arrangement, full relief at your marginal rate happens automatically — there's nothing to claim. If instead your contributions are 'relief at source' (common for personal pensions and many workplace schemes), the pension provider only ever adds relief at the UK basic rate of 20% automatically. A Scottish intermediate, higher, advanced, or top-rate taxpayer has to claim the difference back themselves through Self Assessment — it isn't done for you. A Scottish starter-rate taxpayer is the one exception: they keep the extra 20% relief-at-source top-up with no clawback, even though their income tax rate is below 20%. If your income falls between £100,000 and £125,140, you're in the personal allowance taper zone, where you lose £1 of tax-free personal allowance for every £2 earned above £100,000 — pension contributions are a well-known way to reduce your income for this test and soften the effect.",
+  "pot-projection": "A pension pot's eventual size depends on three things: how much time it has to grow, how much goes in, and the investment growth achieved along the way. The three scenarios shown (cautious, balanced, optimistic) aren't predictions — they illustrate how sensitive the outcome is to investment performance, which is genuinely uncertain and outside anyone's control. The 25% tax-free lump sum figure is the amount that could typically be taken free of tax when the pension is first accessed, capped against a current illustrative allowance — the rest of the pot, however it's drawn, is normally taxed as income. How much investment risk suits you depends on how long the money has to grow and how you'd feel about the pot's value falling temporarily, which is a personal question rather than one with a single right answer.",
+  "state-pension": "Qualifying National Insurance years build up your entitlement to the new State Pension — currently a maximum of 35 qualifying years is needed for the full amount, with a minimum of around 10 years usually needed to get any State Pension at all. Years short of that can sometimes be filled by paying voluntary Class 3 National Insurance contributions, though whether that's worthwhile depends on your individual circumstances and how many years you're missing. The actual weekly and annual State Pension amount is uprated every April, so rather than quoting a specific figure here, the free 'Check your State Pension forecast' service on GOV.UK gives an exact, personalised figure based on your real record — including any gaps and whether voluntary contributions would fill them cost-effectively.",
+  "income-options": "There are three broad ways to take a defined contribution pension in the UK. An annuity converts some or all of the pot into a guaranteed income for life (or a fixed term) — the appeal is certainty, the trade-off is usually a lower total return if you live a long time, and annuity rates vary with interest rates and health. Flexible drawdown keeps the pot invested and lets you draw an income that can vary year to year — more flexible, but the pot (and the income it can sustain) depends on ongoing investment performance and how much is withdrawn. Taking lump sums as needed (sometimes called UFPLS) is similar in spirit but taken irregularly rather than as a regular income. Many people use a mix — some guaranteed income to cover essential costs, with the rest kept flexible. Which mix suits you depends on how much certainty you want, whether you have other income or lump-sum plans, and your own appetite for keeping money invested in retirement.",
+  "death-benefits": "In Scotland, most UK pension death benefits are paid at the scheme trustees' discretion, which has two important effects: the money usually sits outside your estate for Inheritance Tax purposes, and it usually sits outside the 'legal rights' that a spouse, civil partner, or children can otherwise claim against your moveable estate under Scots law. An expression of wish (sometimes called a nomination) tells the trustees who you'd like the money to go to — it's a strong steer, but importantly it is not normally legally binding on them, which is exactly why keeping it up to date matters: an old or missing nomination leaves the trustees to decide with less guidance from you. If your circumstances have changed — a new partner, a new child, a separation — it's worth checking your nomination is still what you'd want."
+};
+
+// Builds the closing safety/next-steps block used at the end of every local
+// summary — mirrors the same rules the AI guidance engine follows, so the
+// safety behaviour (Pension Wise/MoneyHelper steer, scam warning signs) is
+// never lost just because the online service is unreachable.
+function localGuidanceClosing(wellbeingFlag, scamFlag){
+  let out = "";
+  if(wellbeingFlag){
+    out += `\n\n## If things feel difficult right now\nSomething in your answers suggested this might be a worrying or stressful time to be thinking about pensions. That's completely understandable, and you don't have to work through it alone — Pension Wise (free, government-backed, for over-50s) and MoneyHelper both offer free, impartial guidance and are a genuinely good next step before making any decisions.`;
+  }
+  if(scamFlag){
+    out += `\n\n## A note on pension scams\nSomething in your answers has some of the hallmarks of a pension scam approach — a cold contact, pressure to act quickly, promises of guaranteed or unusually high returns, or being told you can access your pension before age 55 are all common warning signs. Please don't feel rushed into any decision. Before doing anything else, check any firm on the FCA Register and use FCA ScamSmart to see if it matches a known scam pattern.`;
+  }
+  out += `\n\n## Next step\nThis is educational information, not a personal recommendation — for advice tailored to your own circumstances, it's worth discussing the specifics with an FCA-authorised financial adviser.`;
+  return out;
+}
+
+// The public entry point: builds a full markdown summary with no network call.
+function generateLocalGuidance(m, factsLines, calcResults, wellbeingFlag, scamFlag){
+  const bullets = factsLines
+    .filter(l => !l.startsWith("WELLBEING NOTE") && !l.startsWith("SCAM ALERT NOTE"))
+    .map(l => `- ${factLineToBullet(l)}`)
+    .join("\n");
+
+  let out = `## Your numbers\n${bullets || "- No figures were given for this module."}`;
+  out += `\n\n## What this means\n${LOCAL_MODULE_EXPLAINERS[m.id] || "Here's what your figures mean in general terms."}`;
+  out += localGuidanceClosing(wellbeingFlag, scamFlag);
+  return out;
+}
+
+async function callGuidanceAPI(userMessage){
+  let response;
+  try{
+    response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: [ { role: "user", content: userMessage } ]
+      })
+    });
+  } catch(networkErr){
+    return { ok:false, errorText: "Couldn't reach the guidance service — check your connection and try again. (" + networkErr.message + ")" };
+  }
+
+  const body = await readBodySafely(response);
+
+  if(!response.ok){
+    return { ok:false, errorText: extractErrorMessage(response.status, body) };
+  }
+  if(!body.json){
+    return { ok:false, errorText: "The guidance service returned something unexpected: " + (body.raw || "").slice(0, 200) };
+  }
+
+  let text = "";
+  try{
+    const textBlock = (body.json.content || []).find(b => b.type === "text");
+    text = textBlock ? textBlock.text : "";
+  } catch(shapeErr){
+    return { ok:false, errorText: "Couldn't read the guidance response (unexpected shape): " + shapeErr.message };
+  }
+
+  if(!text) return { ok:false, errorText: "No guidance came back this time. Please try again." };
+  return { ok:true, text };
+}
+
+async function fetchAdvice(){
+  const m = state.module;
+  const factsLines = m.questions.map(q => `${q.label} — ${state.answers[q.id] || "(not answered)"}`);
+  const calcResults = computeCalcResults(m.id, state.answers);
+
+  factsLines.push(...calcResultsToFactLines(calcResults));
+  factsLines.push(...buildOtherContextLines(m, state.answers));
+
+  const wellbeingFlag = detectKeywordSignal(state.answers, WELLBEING_KEYWORDS);
+  const scamFlag = detectKeywordSignal(state.answers, SCAM_KEYWORDS);
+  if(wellbeingFlag) factsLines.push("WELLBEING NOTE: something in these answers suggests possible worry, stress, or financial difficulty.");
+  if(scamFlag) factsLines.push("SCAM ALERT NOTE: something in these answers has the hallmarks of a pension scam approach.");
+
+  const userMessage = `USER FACTS:\n${factsLines.join("\n")}\n\nMODULE TASK:\n${m.task}`;
+  const result = await callGuidanceAPI(userMessage);
+
+  if(!result.ok){
+    setState({
+      screen: "advice",
+      adviceHtml: simpleMarkdownToHtml(generateLocalGuidance(m, factsLines, calcResults, wellbeingFlag, scamFlag)),
+      calcResults,
+      wellbeingFlag,
+      scamFlag,
+      usedLocalFallback: true
+    });
+    return;
+  }
+
+  setState({
+    screen: "advice",
+    adviceHtml: simpleMarkdownToHtml(result.text),
+    calcResults,
+    wellbeingFlag,
+    scamFlag,
+    usedLocalFallback: false
+  });
+}
+
+async function fetchForecastAdvice(calcResults){
+  const m = MODULES.find(mod => mod.id === "forecast");
+  const factsLines = calcResultsToFactLines(calcResults);
+  factsLines.push(...buildOtherContextLines(m, state.answers));
+
+  const wellbeingFlag = detectKeywordSignal(state.answers, WELLBEING_KEYWORDS);
+  const scamFlag = detectKeywordSignal(state.answers, SCAM_KEYWORDS);
+  if(wellbeingFlag) factsLines.push("WELLBEING NOTE: something in these answers suggests possible worry, stress, or financial difficulty.");
+  if(scamFlag) factsLines.push("SCAM ALERT NOTE: something in these answers has the hallmarks of a pension scam approach.");
+
+  const userMessage = `USER FACTS:\n${factsLines.join("\n")}\n\nMODULE TASK:\n${m.task}`;
+  const result = await callGuidanceAPI(userMessage);
+
+  if(!result.ok){
+    setState({
+      screen: "advice",
+      module: m,
+      adviceHtml: simpleMarkdownToHtml(generateLocalGuidance(m, factsLines, calcResults, wellbeingFlag, scamFlag)),
+      calcResults,
+      wellbeingFlag,
+      scamFlag,
+      usedLocalFallback: true
+    });
+    return;
+  }
+
+  setState({
+    screen: "advice",
+    module: m,
+    adviceHtml: simpleMarkdownToHtml(result.text),
+    calcResults,
+    wellbeingFlag,
+    scamFlag,
+    usedLocalFallback: false
+  });
+}
+
+render();
+</script>
+</body>
+</html>
